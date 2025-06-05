@@ -1,0 +1,48 @@
+.box{
+    border: 1px solid;
+    width: 500px;
+    height: 680px;  
+    background-color: white;
+    border-radius: 15px;
+   display: flex;
+   flex-direction: column;
+  padding: 30px;
+  position: absolute;
+  left: 13%;
+   box-shadow: 0 4px 12px rgba(0, 0, 5, 0.17);
+}
+.sig{
+    display: flex;
+     align-items: center;
+    justify-content: center;
+     width: 500px;
+    height: 500px;
+    height: 100vh;
+}
+.st{
+    font-size: 21px;
+}
+.la{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 400px;
+}
+@media screen and (min-width:768px){
+   .box{
+   position: absolute;
+  left: 24%;
+
+}
+   }
+@media screen and (min-width:1025px){
+   .box{
+   position: absolute;
+  left: 33%;
+
+}
+   }
+
+   
+
+
