@@ -1,0 +1,116 @@
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh; 
+  overflow: hidden;
+}
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
+}
+.text-overlay {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: left;
+  padding: 20px;
+  max-width: 650px;
+  margin-left: 8%;
+  top: 26%;
+}
+.text-overlay h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-overlay p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .text-overlay h1 {
+    font-size: 1.8rem;
+  }
+
+  .text-overlay p {
+    font-size: 1rem;
+  }
+}
+
+.hero-container{
+    border: 3px solid rgb(249, 248, 248);
+    padding: 20px;
+    border-radius: 8px;
+}
+.mainbtn{
+  background:  rgb(208, 208, 208) ;
+  width: 550px;
+  height: 50px;
+  border-radius: 20px;
+}
+.mainbtn button{
+  width: 250px;
+   color: rgb(10, 10, 10);
+  font-size: 22px;
+  border: none;
+  background: none;
+}
+.cta-button{
+  padding: 10px;
+  background-color: green;
+  color: white;
+  font-size: 20px;
+  border-radius: 7px;
+  border: none;
+}
+.toggle-tabs {
+  position: relative;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.toggle-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 10px 0;
+  z-index: 1;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  font-size: 1rem;
+}
+.toggle-btn.active {
+  color: rgb(249, 250, 252);
+}
+.slider {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  width: 50%;
+  background: rgb(99, 98, 98);
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+.slider.left {
+  transform: translateX(0%);
+}
+.slider.right {
+  transform: translateX(100%);
+}
+@media screen and (max-width:768px) {
+ .mainbtn{
+  display: flex;
+ }
+}

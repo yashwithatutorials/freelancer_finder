@@ -12,7 +12,7 @@ const Login = () => {
         axios.post('http://localhost:8080/login',{email,password})
         .then(result=>{console.log(result)
             if(result.data==="success"){
-            navigate('../navbar/Navbar.jsx');
+            navigate('/Navbar');
             }
             
     })
