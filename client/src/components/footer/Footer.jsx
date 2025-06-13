@@ -5,13 +5,15 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import img from '../images/freelance_logo.jpg';
 const Footer = () => {
   return (
     <>
         <footer className="footer">
       <div className="footer-container">
         <div className="footer-column">
-          <h2 className="logo" >Freelancer</h2>
+          {/* <h2  >Freelancer</h2> */}
+          <img src={img} style={{marginBottom:"40px"}}/>
           <ul>
             <li>🌐 India / English</li>
             <li>❓ Help & Support</li>

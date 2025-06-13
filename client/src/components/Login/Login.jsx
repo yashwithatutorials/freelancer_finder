@@ -10,9 +10,17 @@ const Login = () => {
     const handleSubmit=(e)=>{
         e.preventDefault();
         axios.post('http://localhost:8080/login',{email,password})
-        .then(result=>{console.log(result)
-            if(result.data==="success"){
-            navigate('/Navbar');
+        .then(result=>{
+           if (result.data.status === "success") {
+            const userData=result.data.user;
+  localStorage.setItem("user", JSON.stringify(userData)); 
+  navigate('/Home');
+  window.location.reload();
+  
+}
+
+            else{
+                alert("Invalid login Credentials");
             }
             
     })
@@ -21,7 +29,7 @@ const Login = () => {
   return (
     <>
 <div className='d-flex justify-content-center align-items-center  vh-100  sin'>
-    <div className='box p-3 rounded '>
+    <div className='box p-3 rounded ' style={{height:"600px"}}>
         <h2 className='text-center' style={{marginBottom:"30px",fontSize:"34px",color:"blue"}}>Login</h2>
         <form onSubmit={handleSubmit}>
             <div className='mb-3'>
@@ -45,13 +53,13 @@ const Login = () => {
                 type='password'
                 placeholder='Enter password'
                 autoComplete='off'
-                name='email'
+                name='password'
                 className='form-control-rounded-8 la'
                 onChange={(e)=>setPassword(e.target.value)}
                 />
             </div>
-                       <button type='submit' className='btn btn-primary w-100 rounded-2' style={{marginBottom:"10px",fontSize:"18px"}}>Login as client</button>
-            <button type='submit' className='btn btn-primary w-100 rounded-2' style={{fontSize:"18px"}}>Login as freelancer</button>
+                       <button type='submit' className='btn btn-primary w-100 rounded-2' style={{marginBottom:"10px",fontSize:"20px"}}>Login</button>
+            
             </form><br></br>
             <p>Don't Have an Account</p>
             <a href="/Signup" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>

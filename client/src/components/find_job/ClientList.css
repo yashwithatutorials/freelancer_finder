@@ -1,0 +1,247 @@
+/* .job_page {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.job_listings {
+  flex: 1;
+}
+
+.job_cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.job_card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 12px;
+  background: white;
+}
+
+.job_logo {
+  width: 40px;
+  height: 40px;
+} */
+
+/* .job_page {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  padding: 20px;
+   flex-wrap: wrap;
+}
+.sidebar {
+  background-color: #000;      
+  color: #fff;                 
+}
+
+.sidebar input,
+.sidebar label {
+  color: #fff;                  
+}
+
+.sidebar input[type="checkbox"] {
+  accent-color: white;          
+}
+
+
+.job_cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;      
+  gap: 10px;                     
+  padding: 10px;
+}
+
+.job_card {
+  background-color: #000;        
+  color: #fff;                   
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  max-width: 300px;             
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.job_card h3,
+.job_card p,
+.job_card span {
+  color: #fff;                  
+}
+
+.job_tags span {
+  background-color: #222;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin: 2px;
+}
+.job_buttons button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.job_card img,
+.card__avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;          
+  border-radius: 50%;
+  max-width: 100%;
+  margin-bottom: 12px;
+}
+.job_buttons button:hover {
+  background-color: white;
+  color: black;
+}
+@media (max-width: 500px) {
+  .job_card {
+    max-width: 100%;
+  }
+} */
+
+.job_page {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 30px;
+  flex-wrap: wrap;
+}
+.sidebar {
+  background-color: #000;
+  color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  width: 250px;
+}
+
+.sidebar h3,
+.sidebar label,
+.sidebar select {
+  color: #fff;
+}
+
+.sidebar input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 6px;
+  accent-color: white;
+}
+
+@media (min-width: 1024px) {
+  .sidebar input[type="checkbox"] {
+    transform: scale(1.5);
+  }
+}
+
+.job_listings {
+  flex: 1;
+}
+
+.job_cards {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  gap: 40px;
+  padding: 30px;
+}
+
+
+.job_card {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #47ecec;
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 0 9px skyblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.job_card h3,
+.job_card p,
+.job_card span {
+  color: #fff;
+}
+.job_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.job_tags span {
+  background-color: #222;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+.job_card img,
+.card__avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+
+.job_buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.job_buttons button {
+  background-color: transparent;
+  border: 1px solid rgb(62, 232, 218);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.job_buttons button:hover {
+  background-color: white;
+  color: black;
+}
+@media (max-width: 768px) {
+  .job_page {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .job_card {
+    max-width: 100%;
+  }
+
+  .sidebar input[type="checkbox"] {
+    transform: scale(1.1);
+  }
+}

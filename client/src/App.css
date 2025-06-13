@@ -2,3 +2,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* *{
+    background-color: black;
+} */
+ .job-list-page {
+  display: flex;
+}
+.filters {
+  width: 20%;
+  padding: 20px;
+}
+.job-list {
+  width: 80%;
+}
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+.job-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.pagination button.active {
+  background-color: blue;
+  color: white;
+}

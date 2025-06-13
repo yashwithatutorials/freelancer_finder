@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import './Home.css'
 import backgroundvideo from '../images/freelancer_video.mp4'
+import About from './About'
+import Domains from './Domains'
 const Home = () => {
   const [activeTab, setActiveTab] = useState('browse');
 
@@ -19,7 +21,6 @@ const Home = () => {
         <div className='video-wrapper'>
             <video autoPlay loop muted className='background-video'>
                 <source src={backgroundvideo} type='video/mp4'/>
-
             </video>
             <div className='text-overlay'>
               
@@ -28,7 +29,7 @@ const Home = () => {
       <div className="hero-card">
         <div className="toggle-tabs">
          <div className={`slider ${activeTab === 'talent' ? 'left' : 'right'}`} />
-        <button className='mainbtn'>
+        <div className='mainbtn'>
           <button
             className={`toggle-btn ${activeTab === 'talent' ? 'active' : ''}`}
             onClick={() => setActiveTab('talent')}
@@ -41,7 +42,7 @@ const Home = () => {
           >
             Browse jobs
           </button>
-          </button>
+          </div>
         </div>
          <div className="fade-in">
         <p className="hero-text">
@@ -59,6 +60,9 @@ const Home = () => {
             </div>
 
         </div>
+        <About id="about-section" />
+        <Domains id="domain-section"/>
+        
     </>
   )
 }

@@ -1,0 +1,30 @@
+.search-form {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.search-form button {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: none;
+  background: #0070f3;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background: #0059c1;
+}
+.topbar{
+  padding: 90px;
+}

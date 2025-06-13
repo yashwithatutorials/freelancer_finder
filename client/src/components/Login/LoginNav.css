@@ -3,35 +3,109 @@
     justify-content: space-between;
     background-color: rgb(7, 7, 7);
 }
-.nav-tabs {
+.nav-tab {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    text-decoration: none;
+    gap: 20px;
 }
 .ab{
     display: flex;
     justify-content: space-around;
+    text-decoration: none;
+    margin: 20px;
+    font-size: 28px;
+    color: white;
+}
+.bar{
+   color: white;
+   margin-top: 15px;
+   display: none;
+}
+.cont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+@media screen and (max-width:1204px) {
+    .cont{
+        display: none;
+    }
+    .bar{
+        display: block;
+    }
 }
 
 
 
+/* profile dropdown */
+.profile-wrapper {
+  position: relative;
+  cursor: pointer;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  
+}
+.pro{
+    display: flex;
+}
+.pro img{
+    padding-right: 10px;
+}
+.profile-wrapper h2{
+    margin-left: 15px;
+}
+.profile-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #222;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 200px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  z-index: 1001;
+}
 
+.profile-dropdown p {
+  margin: 5px 0;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.logout-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.view{
+    background-color: rgb(8, 176, 188);
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+}
+.view a{
+     padding: 8px;
+      width: 100%;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* login  and sign up*/
 .mainnav1{
     display: flex;
+    align-items: center;
+    margin-left: 40px;
 }
 .lo{
     text-decoration: none;
@@ -61,6 +135,9 @@
     width: 110px;
     height: 61px;
 }
+
+/* end */
+
 .logo{
     width: 250px;
     margin-left: 30px;
@@ -70,4 +147,84 @@
         width: 210px;
         margin-left: 10px;
     }
+}
+
+@media screen and (max-width: 1204px) {
+    .go1{
+        width:200px;
+        font-size: 32px;
+         padding: 5px;
+        font-weight: 700;
+    }
+    .go2{
+        width:200px;
+        font-size: 32px;
+        padding: 5px;
+        font-weight: 700;
+    }
+    .lo{
+        margin-top: 50px;
+    }
+    .profile-wrapper{
+        display: block;
+        margin-top: 40px;
+    }
+    .profile-wrapper h2{
+        margin-top: 20px;
+    }
+    .profile-dropdown{
+        margin-top: 30px;
+    }
+    .pro{
+        display: flex;
+    }
+}
+
+
+.cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 1283px) {
+  .cont {
+    position: absolute;
+    top: 80px; 
+    right: 0;
+    width: 40%;
+    height: 100vh;
+    background-color: #111;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    z-index: 1000;
+  }
+
+  .cont.show {
+    transform: translateX(0%);
+  }
+
+  .nav-tab {
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .mainnav1 {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bar {
+    display: block;
+    cursor: pointer;
+    margin-right: 20px;
+  }
 }
