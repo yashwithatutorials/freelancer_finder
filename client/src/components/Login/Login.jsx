@@ -12,13 +12,14 @@ const Login = () => {
         axios.post('http://localhost:8080/login',{email,password})
         .then(result=>{
            if (result.data.status === "success") {
+
             const userData=result.data.user;
+            const userEmail=result.data.email|| result.data.user.email;
+            localStorage.setItem("email",userEmail);
   localStorage.setItem("user", JSON.stringify(userData)); 
   navigate('/Home');
-  window.location.reload();
-  
+  window.location.reload(); 
 }
-
             else{
                 alert("Invalid login Credentials");
             }

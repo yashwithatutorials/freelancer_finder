@@ -124,6 +124,8 @@
   gap: 20px;
   padding: 30px;
   flex-wrap: wrap;
+  background-color: #000;
+  color: white;
 }
 .sidebar {
   background-color: #000;
@@ -172,14 +174,18 @@
   border-radius: 12px;
   padding: 16px;
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
   box-shadow: 0 0 9px skyblue;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: transform 0.2s ease;
 }
-
+.sidebar h3{
+  color: skyblue;
+  font-size: 27px;
+  font-weight: bold;
+}
 .job_card h3,
 .job_card p,
 .job_card span {
@@ -234,7 +240,7 @@
 
   .sidebar {
     width: 100%;
-    font-size: 14px;
+    font-size: 22px;
   }
 
   .job_card {
@@ -242,6 +248,6 @@
   }
 
   .sidebar input[type="checkbox"] {
-    transform: scale(1.1);
+    transform: scale(1.4);
   }
 }

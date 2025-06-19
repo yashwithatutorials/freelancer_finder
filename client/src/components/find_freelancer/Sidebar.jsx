@@ -1,98 +1,8 @@
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import './Sidebar.css';
-
-// const categories = [
-//   'All', 'Frontend Developer', 'Backend Developer', 'Full Stack',
-//   'Data Analyst', 'Graphic Designer', 'Management', 'Tutor',
-//   'Video Editor', 'Photography', 'Financial Advisor'
-// ];
-// const locations = [
-//   'Bangalore', 'Washington', 'Hyderabad',
-//   'Mumbai', 'California', 'Chennai', 'New York'
-// ];
-
-// export default function Sidebar({ onFilterChange }) {
-//   const [selectedCategories, setSelectedCategories] = useState([]);
-//   const [selectedLocations, setSelectedLocations] = useState([]);
-//   const [showFilters, setShowFilters] = useState(true);
-
-//   const isMobile = window.innerWidth <= 768;
-
-//   const handleCheckboxChange = (setFn, values, value) => {
-//     if (values.includes(value)) {
-//       setFn(values.filter(v => v !== value));
-//     } else {
-//       setFn([...values, value]);
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (typeof onFilterChange === 'function') {
-//       onFilterChange({
-//         categories: selectedCategories,
-//         locations: selectedLocations
-//       });
-//     }
-//   }, [selectedCategories, selectedLocations, onFilterChange]);
-
-//   return (
-//     <div className="side" >
-//       <aside className="sidebar">
-//         {isMobile && (
-//           <button className="filter-toggle" onClick={() => setShowFilters(!showFilters)}>
-//             {showFilters ? 'Hide Filters' : 'Show Filters'}
-//           </button>
-//         )}
-
-//         {(!isMobile || showFilters) && (
-//           <>
-//             <h3>Search by Skills</h3>
-//             <div className="filter-group">
-//               {categories.map(cat => (
-//                 <label key={cat}>
-//                   <input
-//                     type="checkbox"
-//                     checked={selectedCategories.includes(cat)}
-//                     onChange={() =>
-//                       handleCheckboxChange(setSelectedCategories, selectedCategories, cat)
-//                     }
-//                   />
-//                   {cat}
-//                 </label>
-//               ))}
-//             </div>
-
-//             <h3>Search by Location</h3>
-//             <div className="filter-group">
-//               {locations.map(loc => (
-//                 <label key={loc}>
-//                   <input
-//                     type="checkbox"
-//                     checked={selectedLocations.includes(loc)}
-//                     onChange={() =>
-//                       handleCheckboxChange(setSelectedLocations, selectedLocations, loc)
-//                     }
-//                   />
-//                   {loc}
-//                 </label>
-//               ))}
-//             </div>
-//           </>
-//         )}
-//       </aside>
-//     </div>
-//   );
-// }
-
-
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 
 const categories = [
-  'All', 'Frontend Developer', 'Backend Developer', 'Full Stack',
+   'Frontend Developer', 'Backend Developer', 'Full Stack',
   'Data Analyst', 'Graphic Designer', 'Management', 'Tutor',
   'Video Editor', 'Photography', 'Financial Advisor'
 ];
@@ -107,16 +17,15 @@ export default function Sidebar({ onFilterChange }) {
   const [showFilters, setShowFilters] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Handle screen resize dynamically
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
-      setShowFilters(!mobile); // Auto-show on large, hide on small
+      setShowFilters(!mobile); 
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Trigger once on mount
+    handleResize(); 
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -124,7 +33,7 @@ export default function Sidebar({ onFilterChange }) {
   useEffect(() => {
     if (typeof onFilterChange === 'function') {
       onFilterChange({
-        categories: selectedCategories,
+        skills: selectedCategories,
         locations: selectedLocations
       });
     }

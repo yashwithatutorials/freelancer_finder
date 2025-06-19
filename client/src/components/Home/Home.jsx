@@ -24,7 +24,7 @@ const Home = () => {
             </video>
             <div className='text-overlay'>
               
-              <h1 style={{fontSize:"48px"}}>A Successful Freelancer-Client Relationship is Built on <span style={{color:"rgb(8, 186, 8)",fontSize:"50px"}}>Trust, Communication, and Mutual Respect</span>.</h1>
+              <h1 style={{fontSize:"48px",color:"white"}}>A Successful Freelancer-Client Relationship is Built on <span style={{color:"rgb(8, 186, 8)",fontSize:"50px"}}>Trust, Communication, and Mutual Respect</span>.</h1>
        <div className="hero-container">
       <div className="hero-card">
         <div className="toggle-tabs">

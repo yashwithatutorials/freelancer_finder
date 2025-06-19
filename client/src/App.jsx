@@ -14,6 +14,10 @@ import Jobportal from './components/find_job/Jobportal'
 import Freelance_finder from './components/find_freelancer/freelance_finder'
 import Job_details from './components/job_details/Job_details'
 import Postjob from './components/job_details/Postjob'
+import Details from './components/find_freelancer/Details'
+import ViewJob from './components/find_job/Viewjob'
+import ChatRoom from './components/chat/ChatRoom'
+import AppliedJobs from './components/find_job/AppliedJobs'
 function App() {
  
 
@@ -22,11 +26,16 @@ function App() {
    <LoginNav/>
      <BrowserRouter>
       <Routes>
+      
       <Route path='/' element={<Home/>}/>
      <Route path='/ViewProfile' element={<ViewProfile/>}/>
      <Route path='/jobdetails' element={<Job_details/>}/>
     <Route path='/jobportal' element={<Jobportal/>}/>
         <Route path='/Login' element={<Login/>}/>
+        <Route path="/messages" element={<ChatRoom />} />
+        <Route path='/appliedjobs' element={<AppliedJobs/>}/>
+        <Route path="/freelancer/:id" element={<Details/>}/>
+        <Route path="/job/:jobId" element={<ViewJob/>}/>
         <Route path='/postjob' element={<Postjob/>}/>
         <Route path='/Signup' element={<Signup/>}/>
         <Route path='/Loginnav' element={<LoginNav/>}/>

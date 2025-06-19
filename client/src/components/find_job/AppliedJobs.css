@@ -1,0 +1,27 @@
+.applied-jobs-page {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+.job-list {
+  display: grid;
+  gap: 20px;
+}
+.job-card {
+  background: #f4f4f4;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.chat-btn {
+  margin-top: 10px;
+  background-color: #0066ff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.chat-btn:hover {
+  background-color: #0051cc;
+}

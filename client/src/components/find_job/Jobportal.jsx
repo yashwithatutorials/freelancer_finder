@@ -1,104 +1,72 @@
-import React from 'react'
-import './Jobportal.css'
-const Jobportal = () => {
+import React, { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import "./ClientList.css";
+import Jobsidebar from "./Jobsidebar";
+import Jobsearch  from "./Jobsearch";
+
+export default function Jobportal() {
+  const navigate = useNavigate();
+  const [filters, setFilters] = useState({ categories: [], locations: [] });
+  const [query,   setQuery]   = useState("");
+  const [jobs,    setJobs]    = useState([]);
+
+  /* fetch + optional filtering */
+  const fetchJobs = useCallback(async () => {
+    const res  = await fetch("http://localhost:8080/api/jobs");
+    const data = await res.json();
+    if (!Array.isArray(data)) return;
+
+    let list = data;
+    if (filters.categories.length)
+      list = list.filter(j => filters.categories.includes(j.category));
+    if (filters.locations.length)
+      list = list.filter(j => filters.locations.includes(j.location));
+    if (query.trim()) {
+      const q = query.toLowerCase();
+      list = list.filter(j => j.jobTitle?.toLowerCase().includes(q));
+    }
+    setJobs(list);
+  }, [filters, query]);
+
+  useEffect(() => { fetchJobs(); }, [fetchJobs]);
+
+  const fileURL = (f) =>
+    f && !f.startsWith("http")
+      ? `http://localhost:8080/${f.startsWith("uploads/") ? "" : "uploads/"}${f}`
+      : f || "/default-avatar.png";
+
   return (
-    <>
-       <div className='portal_container'>
-       <div className='search_bar'>
-        <input type='text' placeholder='Search for jobs'
-        
-         className='max-sm:text-xs p-2 rounded outline-none w-full'/>
-        <input type='text' placeholder='Search for location'
-     
-         className='max-sm:text-xs p-2 rounded outline-none w-full'/>
-        <button >Search</button>
-       </div>
-        <div className='sidebar'>
-            <h1>Filters</h1>
-                 
-            <h2 style={{color:"skyblue"}}>By Skills</h2>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Frontend Developer</h3>
+    <div className="job_page">
+      <Jobsidebar onFilterChange={setFilters} />
+      <div className="job_listings">
+        <Jobsearch onSearch={setQuery} />
+
+        <h2>Latest Jobs</h2>
+        <h3>Find your dream job</h3>
+
+        <div className="job_cards">
+          {jobs.map((job) => (
+            <div key={job._id} className="job_card">
+              <img src={fileURL(job.companyLogo)} alt="logo" />
+              <h3 style={{ fontWeight: 700, fontSize: 32 }}>{job.position}</h3>
+              <h3>{job.jobTitle}</h3>
+              <div className="job_tags">
+                <span>{job.location}</span>
+              </div>
+              <p>{job.jobDescription?.slice(0, 150)}…</p>
+              <div className="job_buttons">
+                <button>Apply now</button>
+                <button
+                  className="secondary"
+                  onClick={() => navigate(`/job/${job._id}`)}
+                >
+                  Learn more
+                </button>
+              </div>
             </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Backend Developer</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Fullstack Developer</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Data Analyst</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Graphic Designer</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Photographer</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Video Editing</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Social Media Management</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Financial Advisor</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Online Tutor</h3>
-            </div>
-            <h2 style={{color:"skyblue"}}>Location</h2>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Delhi</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Mumbai</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Hyderabad</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Bangalore</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Chennai</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Kolkata</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Punjab</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Maharastra</h3>
-            </div>
-            <div className='filt'>
-            <input type='checkbox' style={{border:"3px solid black",width:"20px",marginRight:"30px"}}/>
-            <h3>Assam</h3>
-            </div>
+          ))}
         </div>
-
-       </div> 
-    </>
-  )
+      </div>
+    </div>
+  );
 }
-
-export default Jobportal

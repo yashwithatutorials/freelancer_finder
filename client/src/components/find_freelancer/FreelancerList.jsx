@@ -1,51 +1,54 @@
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Sidebar     from './Sidebar';
+import TopSearch   from './TopSearch';
+import '../find_job/ClientList.css';
 
-import React, { useEffect, useState, useCallback } from 'react';
-import Sidebar from './Sidebar';
-import '../find_job/ClientList.css';        
-
-const FreelancerList = () => {
- 
-  const [freelancers, setFreelancers] = useState([]);
+export default function FreelancerList() {
+  const navigate = useNavigate();
+  const [allFreelancers, setAllFreelancers] = useState([]); 
   const [filters, setFilters] = useState({ skills: [], locations: [] });
+  const [query,   setQuery]   = useState('');               
+  useEffect(() => {
+    (async () => {
+      try {
+        const res  = await fetch('http://localhost:8080/api/freelancers');
+        const data = await res.json();
+        if (Array.isArray(data)) setAllFreelancers(data);
+      } catch (err) {
+        console.error('Error fetching freelancers:', err);
+      }
+    })();
+  }, []);
+  const visible = useMemo(() => {
+    let list = [...allFreelancers];
+
+    if (filters.skills.length) {
+      list = list.filter(f => f.skills?.some(s => filters.skills.includes(s)));
+    }
+    if (filters.locations.length) {
+      list = list.filter(f => filters.locations.includes(f.location));
+    }
+    if (query) {
+      const q = query.toLowerCase();
+      list = list.filter(f => f.name.toLowerCase().includes(q));
+    }
+    return list;
+  }, [allFreelancers, filters, query]);
 
   
-  const fetchFreelancers = useCallback(async () => {
-    try {
-      const res  = await fetch('http://localhost:8080/api/freelancers'); 
-      const data = await res.json();
-
-      if (Array.isArray(data)) {
-        let results = data;
-        if (filters.skills.length) {
-          results = results.filter(f =>
-            f.skills?.some(s => filters.skills.includes(s))
-          );
-        }
-        if (filters.locations.length) {
-          results = results.filter(f =>
-            filters.locations.includes(f.location)
-          );
-        }
-
-        setFreelancers(results);
-      }
-    } catch (err) {
-      console.error('Error fetching freelancers:', err);
-    }
-  }, [filters]);
-  useEffect(() => {
-    fetchFreelancers();
-  }, [fetchFreelancers]);
   return (
     <div className="job_page">
-      <Sidebar onFilterChange={setFilters} />
-
+      <Sidebar  onFilterChange={setFilters} />
       <div className="job_listings">
+       
+        <TopSearch onSearch={setQuery} />
+
         <h2>Available Freelancers</h2>
-        <p>Find talent for your next project</p>
+        <h3>Find talent for your next project</h3>
 
         <div className="job_cards">
-          {freelancers.map((f, idx) => (
+          {visible.map((f, idx) => (
             <div key={idx} className="job_card">
               <img
                 src={f.profileImage || '/default-avatar.png'}
@@ -53,24 +56,35 @@ const FreelancerList = () => {
                 className="job_logo"
               />
               <h3>{f.name}</h3>
+
               <div className="job_tags">
                 <span>{f.location}</span>
-                {f.skills?.length && <span>{f.skills[0]}</span>}
-                
+                {f.skills?.length ? <span>{f.skills[0]}</span> : null}
               </div>
-              <span>Experience:{f.experience} year</span>
-              {/* <p>{f.bio?.slice(0, 150)}...</p> */}
+
+              <span>Experience: {f.experience} year</span>
+              <p>
+                Description:&nbsp;
+                {f.description?.trim()
+                  ? f.description.slice(0, 150)
+                  : 'Not provided'}
+              </p>
 
               <div className="job_buttons">
                 <button>Contact</button>
-                <button className="secondary">View profile</button>
+                <button
+                  className="secondary"
+                  onClick={() => navigate(`/freelancer/${f.id}`)}
+                >
+                  View profile
+                </button>
               </div>
             </div>
           ))}
+
+          {!visible.length && <p>No freelancers match your criteria.</p>}
         </div>
       </div>
     </div>
   );
-};
-
-export default FreelancerList;
+}

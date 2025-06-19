@@ -38,14 +38,19 @@ const LoginNav = () => {
             <a href='#about-section' className='ab'>About</a>
              {!user && (
     <>
-      <a href='/freelancer_finder' className='ab'>Find Freelancer</a>
-      <a href='/jobportal' className='ab'>Find Job</a>
+      <a href='/Login' className='ab'>Find Freelancer</a>
+      <a href='/Login' className='ab'>Find Job</a>
     </>
   )}
           {user?.role==='client' &&  (<><a href='/freelancer_finder' className='ab'>Find Freelancer</a>
           <a href='/jobdetails' className='ab'>Job Details</a></>
           )}
-          {user?.role==='freelancer' &&    (<a href='/jobportal' className='ab'>Find job</a>)}
+          {user?.role==='freelancer' &&    (
+            <>
+            
+            <a href='/jobportal' className='ab'>Find job</a>
+             <a href='/appliedjobs' className='ab'>Applied Jobs</a>
+            </>)}
           </div>
  {user ? (
             <div

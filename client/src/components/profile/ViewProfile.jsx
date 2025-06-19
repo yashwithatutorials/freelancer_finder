@@ -13,9 +13,10 @@ const ViewProfile = () => {
 const [rating, setRating] = useState('');
 const [resume, setResume] = useState(null);
 const [companyLogo, setCompanyLogo] = useState(null);
+const [projects,setProjects]=useState('');
 
 
-  const allSkills = ['React', 'Node.js', 'MongoDB', 'Express', 'JavaScript', 'Python','c','cpp'];
+  const allSkills = ['Frontend Developer','Backend Developer','Full Stack','Data Analyst','Photography','Video Editor','Online Tutor'];
 
   const skillOptions = allSkills.map(skill => ({ value: skill, label: skill }));
 
@@ -23,13 +24,13 @@ const [companyLogo, setCompanyLogo] = useState(null);
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const parsed = JSON.parse(storedUser);
-      console.log("USER IMAGE URL:", parsed.profileImage);  
       setUser(parsed);
       setPhoneNumber(parsed.phoneNumber || '');
       setSkills(parsed.skills?.map(skill => ({ value: skill, label: skill })) || []);
       setLocation(parsed.location || '');
       setPosition(parsed.position|| '');
       setDescription(parsed.description||'');
+      setProjects(parsed.project||'');
     }
   }, []);
   const handleUpdate = async () => {
@@ -37,14 +38,18 @@ const [companyLogo, setCompanyLogo] = useState(null);
   formData.append('email', user.email);
   formData.append('phoneNumber', phoneNumber);
   formData.append('skills', JSON.stringify(skills.map(s => s.value)));
+  
+   formData.append('location', location);
   if (user.role === 'freelancer') {
     if (resume) formData.append('resume', resume);
     formData.append('experience', experience);
     formData.append('rating', rating);
+    formData.append('description', description);
+    formData.append('projects',projects);
   }
   if (user.role === 'client') {
     if (companyLogo) formData.append('companyLogo', companyLogo);
-    formData.append('location', location);
+    // formData.append('location', location);
     formData.append('position', position);
     formData.append('description', description);
   }
@@ -100,6 +105,16 @@ const [companyLogo, setCompanyLogo] = useState(null);
            <div>
       <h3><strong>Location:</strong><input type='text' value={location} onChange={(e)=>setLocation(e.target.value)} className='input'></input></h3>
     </div>
+     <h3><strong>Description:</strong>
+    
+ <textarea
+          name="description"
+          className="desc"
+          placeholder="Type job description..."
+          value={description}
+          onChange={(e)=>setDescription(e.target.value)}
+        />
+</h3>
         {user?.role === 'freelancer' ? (
   <div className='freelancer-section'>
     <div className='res'>
@@ -130,6 +145,16 @@ const [companyLogo, setCompanyLogo] = useState(null);
 <h3><strong>No. of Years Experience:</strong>
   <input type='number' value={experience} onChange={(e) => setExperience(e.target.value)}  className='input'/>
 </h3>
+<h3><strong>Projects Done:</strong>
+<textarea
+          name="description"
+          className="desc"
+          placeholder="Type job description..."
+          value={projects}
+          onChange={(e)=>setProjects(e.target.value)}
+        />
+</h3>
+
 <h3><strong>Rating:</strong>
   <input type='text' value={rating} onChange={(e) => setRating(e.target.value)} className='input'/>
 </h3>
@@ -159,10 +184,10 @@ const [companyLogo, setCompanyLogo] = useState(null);
       <h3><strong>Location:</strong><input type='text' value={location} onChange={(e)=>setLocation(e.target.value)} className='input'></input></h3>
     </div> */}
     <div>
-      <h3><strong>Job role:</strong><input type='text' value={position} onChange={(e) => setPosition(e.target.value)} className='input'></input> </h3>
+      <h3><strong>Company Name:</strong><input type='text' value={position} onChange={(e) => setPosition(e.target.value)} className='input'></input> </h3>
     </div>
     <div>
-    <h3><strong>Description:</strong><input type='text' value={description} onChange={(e) => setDescription(e.target.value)} className='input'></input></h3>
+    {/* <h3><strong>Description:</strong><input type='text' value={description} onChange={(e) => setDescription(e.target.value)} className='input'></input></h3> */}
     </div>
     <button
   onClick={handleUpdate}

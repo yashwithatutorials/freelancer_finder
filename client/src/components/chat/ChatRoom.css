@@ -1,0 +1,248 @@
+/* /* .chatroom {
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+}
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  background: #f9f9f9;
+  margin-bottom: 1rem;
+}
+.message {
+  margin-bottom: 0.5rem;
+}
+.message.sent {
+  text-align: right;
+  color: green;
+}
+.message.received {
+  text-align: left;
+  color: blue;
+}
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+}
+.chat-input input {
+  flex: 1;
+  padding: 0.5rem;
+} */
+
+/* :root {
+  --primary: #006aff;
+  --bg: #f8f9fb;
+  --mine: #d1e4ff;
+  --peer: #ffffff;
+}
+
+.chat-wrap {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.chat-bar {
+  padding: 0.75rem 1rem;
+  background: var(--primary);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.chat-pane {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.bubble {
+  max-width: 80%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.bubble.me   { margin-left: auto; background: var(--mine); }
+.bubble.peer { margin-right: auto; background: var(--peer); }
+
+.bubble .time {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  position: absolute;
+  bottom: -1.1rem;
+  right: 0.4rem;
+}
+
+.msg-img {
+  max-width: 160px;
+  max-height: 160px;
+  display: block;
+  margin-top: 0.4rem;
+  border-radius: 8px;
+}
+
+.file-link { display: inline-block; margin-top: 0.3rem; }
+
+.input-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  background: #fff;
+  border-top: 1px solid #e4e4e4;
+}
+
+.input-bar input[type=\"text\"] {
+  flex: 1 1 auto;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+
+.file-btn {
+  cursor: pointer;
+}
+.file-btn input { display: none; }
+
+.send-btn {
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  font-size: 1.2rem;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .bubble { max-width: 90%; }
+  .msg-img { max-width: 120px; max-height: 120px; }
+} */ 
+
+/* ChatRoom.css */
+
+.chat-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f3f4f6;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.chat-bar {
+  background: #3b82f6;
+  color: white;
+  padding: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.chat-pane {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #e5e7eb;
+}
+
+.bubble {
+  max-width: 65%;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  position: relative;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.bubble.me {
+  background: #dbeafe;
+  align-self: flex-end;
+  border-top-right-radius: 0;
+}
+
+.bubble.peer {
+  background: white;
+  align-self: flex-start;
+  border-top-left-radius: 0;
+}
+
+.msg-img {
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.file-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.time-inline {
+  display: block;
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  color: #6b7280;
+  text-align: right;
+}
+
+.input-bar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background: #f9fafb;
+  border-top: 1px solid #d1d5db;
+}
+
+.input-bar input[type="text"] {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  margin: 0 0.5rem;
+  outline: none;
+}
+
+.send-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.file-btn {
+  font-size: 1.25rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.file-btn input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+

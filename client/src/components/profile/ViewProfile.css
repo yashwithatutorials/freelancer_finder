@@ -25,8 +25,14 @@
 .Profile{
      border: 1px solid rgb(3, 246, 238);
     border-radius: 15px;
-     box-shadow: 3px 2px #05f3d3;
+      box-shadow: 0 0 9px skyblue;
       
+}
+.desc{
+    width: 100%;
+    background-color: black;
+    box-shadow: 0 0 10px black;
+    color: white;
 }
 .Profile img{
     margin-top: 60px;
