@@ -1,47 +1,34 @@
-// const mongoose=require('mongoose')
-// const EmployeeSchema=new mongoose.Schema({
-//     name:String,
-//     email:String,
-//     password:String
-// })
-// const EmployeeModel=mongoose.model("employees",EmployeeSchema)
-// module.exports=EmployeeModel;
 const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
+const applicationSchema = new Schema({
+  jobId           : { type: Schema.Types.ObjectId, ref: 'Job', required: true },   // ✅ ref Job
+  applicationDate : { type: Date, default: Date.now },
+  status          : { type: String, enum: ['pending', 'reviewed', 'rejected', 'hired'], default: 'pending' }
+}, { _id:false });
 
-const EmployeeSchema = new mongoose.Schema({
-  name:{
-    type:String,
-    required:true
-  } ,
-  email: { type: String, unique: true },
-  password: {
-    type:String,
-    required:true,
-  } ,
-  role:{
-    type:String,
-    enum:['client','freelancer'],
-    required:true
-  },
-  profileImage: { type: String },
-  phoneNumber: String,
-  skills: [String], 
-//  clientDetails: {
-  companyLogo: String,
-  location: String,
-  position: String,
-  description: String,
-// },
-// freelancerDetails: {
-  resume: String,
-  experience: String,
-  rating: String,
-// },
+const employeeSchema = new Schema({
+  /*  basic profile  */
+  name         : { type: String,  required: true },
+  email        : { type: String,  required: true, unique: true },
+  password     : { type: String,  required: true },
+  role         : { type: String,  enum: ['client', 'freelancer'], required: true },
 
- jobTitle: String,
-  jobDescription: String,
-  jobLocation: String,
-  jobCategory: String,
+  /*  optional profile fields  */
+  profileImage : String,
+  phoneNumber  : String,
+  location     : String,
+  position     : String,
+  description  : String,
+  resume       : String,
+  experience   : String,
+  projects     : String,
+  rating       : String,
+  skills       : [String],
+  companyLogo  : String,
+
+  /*  job‑related arrays  */
+  jobApplications : [applicationSchema],               // applications *sent* by this user
+  createdAt       : { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("Employee", EmployeeSchema);
+module.exports = model('Employee', employeeSchema);
