@@ -22,8 +22,8 @@ export default function ViewApplicants() {
     (async () => {
       try {
         const [jobsRes, appsRes] = await Promise.all([
-          axios.get(`http://localhost:8080/api/jobs?employer=${user.email}`),
-          axios.get(`http://localhost:8080/api/employers/applicants?email=${user.email}`),
+          axios.get(`https://freelancer-finder.onrender.com/api/jobs?employer=${user.email}`),
+          axios.get(`https://freelancer-finder.onrender.com/api/employers/applicants?email=${user.email}`),
         ]);
 
         setJobs(jobsRes.data);
@@ -59,7 +59,7 @@ export default function ViewApplicants() {
 
   // 🔁 Status update
   const updateStatus = async (freelancerId, jobId, status) => {
-    await axios.put("http://localhost:8080/api/applications/status", {
+    await axios.put("https://freelancer-finder.onrender.com/api/applications/status", {
       freelancerId,
       jobId,
       status,

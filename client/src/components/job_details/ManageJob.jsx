@@ -105,7 +105,7 @@ const ManageJob = () => {
     }
 
     axios
-      .get("http://localhost:8080/api/jobs", { params: { email } })
+      .get("https://freelancer-finder.onrender.com/api/jobs", { params: { email } })
       .then((res) => {
         setJobs(res.data);
         setLoading(false);
@@ -126,7 +126,7 @@ const ManageJob = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/jobs/${id}`);
+      await axios.delete(`https://freelancer-finder.onrender.com/api/jobs/${id}`);
       setJobs((prev) => prev.filter((j) => j._id !== id));
       showNotification("Job deleted successfully", true);
     } catch (err) {

@@ -14,7 +14,7 @@ const AppliedJobs = () => {
       return;
     }
 
-   axios.get(`http://localhost:8080/api/jobs`)
+   axios.get(`https://freelancer-finder.onrender.com/api/jobs`)
   .then((res) => {
     const jobs = res.data;
     console.log("Jobs received:", jobs); // 👈 add this
@@ -28,7 +28,7 @@ const AppliedJobs = () => {
   }, [user.email, user.role, navigate]);
  const fileURL = (f) =>
     f && !f.startsWith("http")
-      ? `http://localhost:8080/${f.startsWith("uploads/") ? "" : "uploads/"}${f}`
+      ? `https://freelancer-finder.onrender.com/${f.startsWith("uploads/") ? "" : "uploads/"}${f}`
       : f || "/default-avatar.png";
   return (
     <div className="applied-jobs-page">

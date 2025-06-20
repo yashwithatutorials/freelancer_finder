@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import "./ChatRoom.css";
-
-/* central axios instance */
 const api = axios.create({ baseURL: "http://localhost:8080" });
 
 export default function ChatRoom() {
@@ -18,23 +16,6 @@ const peerLabel  = q.get("name") || peerEmail;
   const [file, setFile] = useState(null);
   const [sending, setSending] = useState(false);
   const endRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (!me.email || !peerEmail || !jobId) return;
-  //   const fetchAll = async () => {
-  //     try {
-  //       const { data } = await api.get("/api/messages", {
-  //         params: { user1: me.email, user2: peerEmail, jobId },
-  //       });
-  //       setMsgs(data);
-  //     } catch (err) {
-  //       console.error("messages fetch", err);
-  //     }
-  //   };
-  //   fetchAll();
-  //   const id = setInterval(fetchAll, 2500);
-  //   return () => clearInterval(id);
-  // }, [me.email, peerEmail, jobId]);
   useEffect(() => {
   if (!me.email || !peerEmail || !jobId) return;
   const fetchAll = async () => {
@@ -42,7 +23,7 @@ const peerLabel  = q.get("name") || peerEmail;
       const { data } = await api.get("/api/messages", {
         params: { user1: me.email, user2: peerEmail, jobId },
       });
-      console.log("Fetched msgs for", me.email, "↔", peerEmail, "job:", jobId, data); // 👈
+      console.log("Fetched msgs for", me.email, "↔", peerEmail, "job:", jobId, data); 
       setMsgs(data);
     } catch (err) {
       console.error("messages fetch", err);
@@ -53,11 +34,7 @@ const peerLabel  = q.get("name") || peerEmail;
   return () => clearInterval(id);
 }, [me.email, peerEmail, jobId]);
 
-  // useEffect(() => {
-  //   endRef.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [msgs]);
-
-  const fileURL = (f) => `http://localhost:8080/uploads/${f}`;
+  const fileURL = (f) => `https://freelancer-finder.onrender.com/uploads/${f}`;
   const isImage = (f) => /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(f);
 
   async function handleSend(e) {

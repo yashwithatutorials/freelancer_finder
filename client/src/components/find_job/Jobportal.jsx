@@ -12,7 +12,7 @@ export default function Jobportal() {
 
   /* fetch + optional filtering */
   const fetchJobs = useCallback(async () => {
-    const res  = await fetch("http://localhost:8080/api/jobs");
+    const res  = await fetch("https://freelancer-finder.onrender.com/api/jobs");
     const data = await res.json();
     if (!Array.isArray(data)) return;
 
@@ -32,7 +32,7 @@ export default function Jobportal() {
 
  const fileURL = (f) =>
   f?.startsWith("http") ? f
-  : f ? `http://localhost:8080/uploads/${f.replace(/^uploads[\\/]/, "")}`
+  : f ? `https://freelancer-finder.onrender.com/uploads/${f.replace(/^uploads[\\/]/, "")}`
   : "/default-avatar.png";
 
 

@@ -44,7 +44,7 @@ const validatePassword = (pwd) => {
   if(imageFile){
   formData.append('profileImage', imageFile);
   }
-  axios.post('http://localhost:8080/signup', formData, {
+  axios.post('https://freelancer-finder.onrender.com/signup', formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   })
   .then(result => {

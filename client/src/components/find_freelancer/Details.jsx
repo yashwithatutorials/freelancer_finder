@@ -13,7 +13,7 @@ const Details = () => {
   useEffect(() => {
     const fetchFreelancers = async () => {
       try {
-        const res = await fetch("http://localhost:8080/api/freelancers");
+        const res = await fetch("https://freelancer-finder.onrender.com/api/freelancers");
         const data = await res.json();
 
         const current = data.find((f) => getId(f) === id);
@@ -76,8 +76,8 @@ const Details = () => {
               <button
                 className="secondary"
                 onClick={(e) => {
-                  e.stopPropagation();                 // don’t trigger parent click
-                  navigate(`/freelancer/${getId(f)}`); // same route, with **s**
+                  e.stopPropagation();                 
+                  navigate(`/freelancer/${getId(f)}`); 
                 }}
               >
                 View profile

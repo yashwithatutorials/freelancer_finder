@@ -12,7 +12,7 @@ export default function FreelancerList() {
   useEffect(() => {
     (async () => {
       try {
-        const res  = await fetch('http://localhost:8080/api/freelancers');
+        const res  = await fetch('https://freelancer-finder.onrender.com/api/freelancers');
         const data = await res.json();
         if (Array.isArray(data)) setAllFreelancers(data);
       } catch (err) {

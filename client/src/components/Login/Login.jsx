@@ -20,7 +20,7 @@ const Login = () => {
     };
     const handleSubmit=(e)=>{
         e.preventDefault();
-        axios.post('http://localhost:8080/login',{email,password})
+        axios.post('https://freelancer-finder.onrender.com/login',{email,password})
         .then(result=>{
            if (result.data.status === "success") {
 
