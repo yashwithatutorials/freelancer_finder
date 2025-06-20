@@ -25,7 +25,7 @@ const JobSchema = new mongoose.Schema(
     /* copied from employer when the job is created */
     company      : String,
     companyLogo  : String,
-
+companyName:String,
     applicants: [ApplicantSchema]
   },
   { timestamps: true }

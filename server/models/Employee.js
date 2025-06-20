@@ -25,7 +25,7 @@ const employeeSchema = new Schema({
   rating       : String,
   skills       : [String],
   companyLogo  : String,
-
+   companyName:String,
   /*  job‑related arrays  */
   jobApplications : [applicationSchema],               // applications *sent* by this user
   createdAt       : { type: Date, default: Date.now }
