@@ -30,10 +30,11 @@ export default function Jobportal() {
 
   useEffect(() => { fetchJobs(); }, [fetchJobs]);
 
-  const fileURL = (f) =>
-    f && !f.startsWith("http")
-      ? `http://localhost:8080/${f.startsWith("uploads/") ? "" : "uploads/"}${f}`
-      : f || "/default-avatar.png";
+ const fileURL = (f) =>
+  f?.startsWith("http") ? f
+  : f ? `http://localhost:8080/uploads/${f.replace(/^uploads[\\/]/, "")}`
+  : "/default-avatar.png";
+
 
   return (
     <div className="job_page">
@@ -48,7 +49,7 @@ export default function Jobportal() {
           {jobs.map((job) => (
             <div key={job._id} className="job_card">
               <img src={fileURL(job.companyLogo)} alt="logo" />
-              <h3 style={{ fontWeight: 700, fontSize: 32 }}>{job.position}</h3>
+              <h3 style={{ fontWeight: 700, fontSize: 32 }}>{job.companyName}</h3>
               <h3>{job.jobTitle}</h3>
               <div className="job_tags">
                 <span>{job.location}</span>

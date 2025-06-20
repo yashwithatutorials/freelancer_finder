@@ -1,7 +1,7 @@
 
 import './App.css'
 import Login from './components/Login/Login'
-import Navbar from './components/navbar/Navbar'
+// import Navbar from './components/navbar/Navbar'
 import Signup from './components/Login/Signup'
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import Footer from './components/footer/footer'
@@ -40,7 +40,7 @@ function App() {
         <Route path='/Signup' element={<Signup/>}/>
         <Route path='/Loginnav' element={<LoginNav/>}/>
         <Route path='/About' element={<About/>}/>
-        <Route path='/Navbar' element={<Navbar/>}/>
+        {/* <Route path='/Navbar' element={<Navbar/>}/> */}
         <Route path='/Home' element={<Home/>}/>
         <Route path='/freelancer_finder' element={<Freelance_finder/>}/>
         

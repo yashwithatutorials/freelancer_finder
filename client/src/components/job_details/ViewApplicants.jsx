@@ -141,24 +141,12 @@ export default function ViewApplicants() {
   )}
 
 
-{/* <button
-  className="contact-btn"
-  onClick={() => navigate(`/messages?with=${a.email}&jobId=${a.jobId}`)}
->
-  Chat
-</button> */}
-
 <button
 className="contact-btn"
   onClick={() =>
-//   navigate(
-//   `/messages?with=${a.email}&name=${encodeURIComponent(a.name)}&jobId=${a.jobId}`
-// )
 navigate(
   `/messages?with=${a.email}&name=${encodeURIComponent(a.name)}&jobId=${a.jobId}`
 )
-
-    // navigate(`/messages?with=${a.email}&jobId=${a.jobId}`)   
   }>
   Chat
 </button>

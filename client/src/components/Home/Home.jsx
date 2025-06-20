@@ -1,21 +1,39 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Home.css'
-import backgroundvideo from '../images/freelancer_video.mp4'
+import backgroundvideo from '../images/freelancerhome.mp4'
 import About from './About'
 import Domains from './Domains'
 const Home = () => {
   const [activeTab, setActiveTab] = useState('browse');
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+const navigate=useNavigate();
+useEffect(() => {
+    // Check if user is logged in
+    const user = JSON.parse(localStorage.getItem('user') || '{}')
+    setIsLoggedIn(!!user.email)
+  }, [])
   const content = {
     browse: {
       text: 'Build your freelancing career on fli freelance, with \nthousands of jobs posted every week.',
       button: 'Explore recently posted jobs',
+      path:'/jobportal'
     },
     talent: {
       text: 'Find top-rated freelancers and agencies for your projects — fast and easy.',
       button: 'Find talent now',
+      path:'/freelancer_finder'
     },
   };
+   const handleButtonClick = () => {
+    if (!isLoggedIn) {
+      // Store intended path before redirecting to login
+      localStorage.setItem('redirectPath', content[activeTab].path)
+      navigate('/login')
+      return
+    }
+    navigate(content[activeTab].path)
+  }
   return (
     <>
         <div className='video-wrapper'>
@@ -53,7 +71,7 @@ const Home = () => {
             </span>
           ))}
         </p>
-        <button className="cta-button">{content[activeTab].button}</button>
+        <button className="cta-button" onClick={handleButtonClick}>{content[activeTab].button}</button>
       </div>
       </div>
     </div>

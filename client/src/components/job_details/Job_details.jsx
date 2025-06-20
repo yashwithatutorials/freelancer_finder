@@ -10,7 +10,7 @@ const Job_details = () => {
   const [activeTab, setActiveTab] = useState("add");
 
   return (
-    <div className="job_pages">
+    <div className="job_pages" >
      <div className="job_sidebar">
   <button onClick={() => setActiveTab("add")} className="sidebar-button">
     <AddCircleIcon style={{ color: "skyblue", fontSize: "44px" }} />

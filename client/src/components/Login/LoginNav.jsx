@@ -1,13 +1,16 @@
 
 import React, { useState,useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from "../images/freelance_logo.jpg";
+import logo from "../images/sb_works.jpg";
 import './LoginNav.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const LoginNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
  const [user, setUser] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
+   const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -16,9 +19,22 @@ const LoginNav = () => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
+  const showNotification = (message, success) => {
+    setPopupMessage(message);
+    setIsSuccess(success);
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 3000);
+  };
+
    const logout = () => {
     localStorage.removeItem("user");
     window.location.href = '/'; 
+     showNotification("Logged out successfully!", true);
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 1000);
 
   };
   const toggleMenu = () => {
@@ -27,6 +43,11 @@ const LoginNav = () => {
 
   return (
     <>
+    {showPopup && (
+        <div className={`popup-notification ${isSuccess ? 'success' : 'error'}`}>
+          {popupMessage}
+        </div>
+      )}
       <nav className='mainnav '>
         <img src={logo} alt='logo' className='logo' />
         <div className='bar' onClick={toggleMenu}>

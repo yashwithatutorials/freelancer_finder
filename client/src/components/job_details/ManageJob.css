@@ -1,76 +1,4 @@
-/* ---- layout shell ----
-.manage‑jobs {
-  padding: clamp(1rem, 2vw, 2rem);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-h2 { margin-bottom: 1rem; }
 
-
-.status       { text-align: center; margin-top: 3rem; font-size: 1.1rem; }
-.status.error { color: #b91c1c; }
-
-
-.card‑grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
-}
-
-
-.job‑card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: .75rem;
-  padding: 1rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  box-shadow: 0 1px 2px rgba(0,0,0,.04);
-  transition: transform .15s ease;
-}
-.job‑card:hover { transform: translateY(-3px); }
-
-.job‑card header h3 {
-  margin: 0 0 .25rem 0;
-  font-size: 1.125rem;
-  line-height: 1.3;
-}
-.meta { color: #6b7280; font-size: .875rem; margin-bottom: .5rem; }
-
-.desc {
-  flex-grow: 1;                
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  margin-bottom: .75rem;
-}
-
-details { margin-top: .5rem; }
-details summary {
-  cursor: pointer;
-  user-select: none;
-  font-weight: 600;
-}
-.delete‑btn {
-  margin-top: .75rem;
-  padding: .5rem 1rem;
-  background: #ef4444;
-  color: #fff;
-  border: none;
-  border-radius: .5rem;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background .15s ease;
-}
-.delete‑btn:hover { background: #dc2626; }
-
-@media (max-width: 480px) {
-  .job‑card { padding: .875rem; }
-  .job‑card header h3 { font-size: 1rem; }
-  
-} */
-/* ---------- container ---------- */
 .manage-jobs {
   max-width: 1300px;
   margin: 2rem auto;
@@ -87,7 +15,7 @@ details summary {
   font-weight: 700;
 }
 
-/* ---------- grid layout ---------- */
+
 .card-grid {
   display: flex;
   flex-wrap: wrap;
@@ -95,7 +23,7 @@ details summary {
   justify-content: center;
 }
 
-/* ---------- job card ---------- */
+
 .job-card {
   background: #ffffff;
   border-radius: 1.2rem;
@@ -125,19 +53,19 @@ details summary {
 }
 
 .job-card .desc {
-  background: #ffffff;                /* white background */
+  background: #ffffff;                
   padding: 1rem;
   border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);  /* subtle shadow */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
   margin-bottom: 1rem;
   color: #374151;
   font-size: 1rem;
   line-height: 1.5;
-  border: 1px solid #e5e7eb;          /* optional light border */
+  border: 1px solid #e5e7eb;          
 }
 
 
-/* ---------- section headers ---------- */
+
 .job-card h4 {
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
@@ -147,7 +75,6 @@ details summary {
   padding-bottom: 0.25rem;
 }
 
-/* ---------- lists ---------- */
 .job-card ul {
   padding-left: 1.2rem;
   margin: 0;
@@ -157,7 +84,6 @@ details summary {
   line-height: 1.5;
 }
 
-/* ---------- delete button ---------- */
 .delete-btn {
   margin-top: 1.5rem;
   background: linear-gradient(to right, #ef4444, #dc2626);
@@ -176,7 +102,7 @@ details summary {
   box-shadow: 0 6px 18px rgba(239, 68, 68, 0.4);
 }
 
-/* ---------- status text ---------- */
+
 .status {
   text-align: center;
   margin-top: 3rem;
@@ -187,3 +113,67 @@ details summary {
 .status.error {
   color: #dc2626;
 }
+/* Popup Notification Styles */
+.popup-notification {
+  position: fixed;
+  top: 20%;
+  left: 92%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  text-align: center;
+  min-width: 300px;
+  max-width: 80%;
+  animation: fadeIn 0.3s;
+}
+
+.popup-notification.success {
+  background-color: #4CAF50;
+}
+
+.popup-notification.error {
+  background-color: #f44336;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.popup-confirm, .popup-cancel {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.popup-confirm {
+  background-color: white;
+  color: #f44336;
+}
+
+.popup-cancel {
+  background-color: #555;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Existing styles... */
+

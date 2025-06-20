@@ -2,6 +2,11 @@
     display: flex;
     justify-content: space-between;
     background-color: rgb(7, 7, 7);
+     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+                0 6px 6px rgba(0, 0, 0, 0.2),
+                inset 0 -2px 5px rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 100;
 }
 .nav-tab {
     display: flex;
@@ -38,10 +43,6 @@
         display: block;
     }
 }
-
-
-
-/* profile dropdown */
 .profile-wrapper {
   position: relative;
   cursor: pointer;
@@ -69,8 +70,19 @@
   border-radius: 10px;
   width: 200px;
   text-align: left;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3),
+              0 4px 8px rgba(0,0,0,0.2),
+              inset 0 -2px 5px rgba(255,255,255,0.05);
   z-index: 1001;
+  transform: translateY(5px);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.profile-dropdown:hover {
+  transform: translateY(0);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.4),
+              0 6px 12px rgba(0,0,0,0.3),
+              inset 0 -3px 8px rgba(255,255,255,0.1);
 }
 
 .profile-dropdown p {
@@ -87,12 +99,30 @@
   margin-top: 10px;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 4px 0 #c00,
+              0 5px 5px rgba(0,0,0,0.2);
+  transition: all 0.1s ease;
+  position: relative;
+}
+.logout-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #c00;
 }
 .view{
     background-color: rgb(8, 176, 188);
     width: 150px;
     height: 40px;
     border-radius: 5px;
+    margin-bottom: 9px;
+    box-shadow: 0 4px 0 rgb(6, 146, 156),
+              0 5px 5px rgba(0,0,0,0.2);
+  transition: all 0.1s ease;
+  position: relative;
+  border: none;
+}
+.view:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgb(6, 146, 156);
 }
 .view a{
      padding: 8px;
@@ -101,7 +131,7 @@
   font-weight: bold;
   cursor: pointer;
 }
-/* login  and sign up*/
+
 .mainnav1{
     display: flex;
     align-items: center;
@@ -136,16 +166,18 @@
     height: 61px;
 }
 
-/* end */
+
 
 .logo{
-    width: 250px;
+    width: 100px;
     margin-left: 30px;
+    height: 100px;
 }
 @media screen and (max-width:768px) {
     .logo{
-        width: 210px;
+        width: 100px;
         margin-left: 10px;
+        height: 100px;
     }
 }
 
@@ -228,3 +260,46 @@
     margin-right: 20px;
   }
 }
+
+.popup-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
+}
+
+.popup-notification.success {
+  background-color: #4CAF50;
+}
+
+.popup-notification.error {
+  background-color: #f44336;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+

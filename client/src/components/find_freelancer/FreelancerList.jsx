@@ -62,7 +62,7 @@ export default function FreelancerList() {
                 {f.skills?.length ? <span>{f.skills[0]}</span> : null}
               </div>
 
-              <span>Experience: {f.experience} year</span>
+              <span>Experience: {f.experience||0} year</span>
               <p>
                 Description:&nbsp;
                 {f.description?.trim()

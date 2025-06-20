@@ -6,7 +6,18 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const Login = () => {
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
-    const navigate=useNavigate()
+    const navigate=useNavigate();
+     const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const showNotification = (message, success) => {
+        setPopupMessage(message);
+        setIsSuccess(success);
+        setShowPopup(true);
+        setTimeout(() => {
+            setShowPopup(false);
+        }, 3000);
+    };
     const handleSubmit=(e)=>{
         e.preventDefault();
         axios.post('http://localhost:8080/login',{email,password})
@@ -18,10 +29,15 @@ const Login = () => {
             localStorage.setItem("email",userEmail);
   localStorage.setItem("user", JSON.stringify(userData)); 
   navigate('/Home');
-  window.location.reload(); 
+   showNotification("Login successful!", true);
+                    setTimeout(() => {
+                        navigate('/Home');
+                        window.location.reload();
+                    }, 1000);
+//   window.location.reload(); 
 }
             else{
-                alert("Invalid login Credentials");
+                showNotification("Invalid login credentials", false);
             }
             
     })
@@ -29,6 +45,11 @@ const Login = () => {
     }
   return (
     <>
+    {showPopup && (
+                <div className={`popup-notification ${isSuccess ? 'success' : 'error'}`}>
+                    {popupMessage}
+                </div>
+            )}
 <div className='d-flex justify-content-center align-items-center  vh-100  sin'>
     <div className='box p-3 rounded ' style={{height:"600px"}}>
         <h2 className='text-center' style={{marginBottom:"30px",fontSize:"34px",color:"blue"}}>Login</h2>

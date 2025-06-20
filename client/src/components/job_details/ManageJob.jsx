@@ -9,7 +9,6 @@
 
 //   const email = JSON.parse(localStorage.getItem("user") || "{}").email;
 
-
 //   useEffect(() => {
 //     if (!email) { setError("User e‑mail missing."); setLoading(false); return; }
 
@@ -31,47 +30,43 @@
 //     }
 //   };
 
- 
-//   if (loading) return <p className="status">Loading…</p>;
-//   if (error)   return <p className="status error">{error}</p>;
-//   if (!jobs.length) return <p className="status">You haven’t posted any jobs yet.</p>;
+//   if (loading)        return <p className="status">Loading…</p>;
+//   if (error)          return <p className="status error">{error}</p>;
+//   if (!jobs.length)   return <p className="status">You haven’t posted any jobs yet.</p>;
 
 //   return (
-//     <div className="manage‑jobs">
-//       <h2>Your Posted Jobs</h2>
-
-//       <div className="card‑grid">
+//     <div className="manage" >
+//     <div className="manage-jobs" >
+//       <h2 style={{background:"none"}}>Your Posted Jobs</h2>
+// <h3>Your Posted jobs</h3>
+//       <div className="card-grid">
+      
 //         {jobs.map(job => (
-//           <article key={job._id} className="job‑card">
+//           <article key={job._id} className="job-card" style={{background:"none"}}>
 //             <header>
 //               <h3>{job.jobTitle}</h3>
-//               <p className="meta">{job.jobCategory} • {job.jobLocation}</p>
+//               <p className="meta">{job.category} • {job.location}</p>
 //             </header>
 
-//             <p className="desc">{job.jobDescription}</p>
+//             <p className="desc">Description:  {job.jobDescription}</p>
+// <h4>Responsibilities</h4>
+// <ul>
+//   {(job.jobRequirement || []).map((item, i) => <li key={i}>{item}</li>)}
+// </ul>
 
-//             <details>
-//               <summary>Responsibilities</summary>
-//               <ul>
-//                 {(job.jobRequirement || []).map((item, i) => <li key={i}>{item}</li>)}
-//               </ul>
-//             </details>
+// <h4>Skills Required</h4>
+// <ul>
+//   {(job.jobSkills || []).map((s, i) => <li key={i}>{s}</li>)}
+// </ul>
 
-//             <details>
-//               <summary>Skills Required</summary>
-//               <ul>
-//                 {(job.skillsRequired || []).map((s, i) => <li key={i}>{s}</li>)}
-//               </ul>
-//             </details>
-//             <button
-//               className="delete‑btn"
-//               onClick={() => handleDelete(job._id)}
-//             >
+
+//             <button className="delete-btn" onClick={() => handleDelete(job._id)}>
 //               Delete Job
 //             </button>
 //           </article>
 //         ))}
 //       </div>
+//     </div>
 //     </div>
 //   );
 // };
@@ -79,88 +74,144 @@
 // export default ManageJob;
 
 
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ManageJob.css";
 
 const ManageJob = () => {
-  const [jobs, setJobs]       = useState([]);
+  const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState(null);
+  const [error, setError] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [jobToDelete, setJobToDelete] = useState(null);
 
   const email = JSON.parse(localStorage.getItem("user") || "{}").email;
 
+  const showNotification = (message, success) => {
+    setPopupMessage(message);
+    setIsSuccess(success);
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 3000);
+  };
+
   useEffect(() => {
-    if (!email) { setError("User e‑mail missing."); setLoading(false); return; }
+    if (!email) {
+      setError("User email missing.");
+      setLoading(false);
+      return;
+    }
 
     axios
       .get("http://localhost:8080/api/jobs", { params: { email } })
-      .then(res => { setJobs(res.data); setLoading(false); })
-      .catch(err => { console.error(err); setError("Failed to load jobs"); });
+      .then((res) => {
+        setJobs(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Failed to load jobs");
+        showNotification("Failed to load jobs", false);
+      });
   }, [email]);
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Delete this job posting?")) return;
-
-    try {
-      await axios.delete(`http://localhost:8080/api/jobs/${id}`);
-      setJobs(prev => prev.filter(j => j._id !== id));
-    } catch (err) {
-      console.error(err);
-      alert("Delete failed – see console for details.");
-    }
+  const confirmDelete = (id) => {
+    setJobToDelete(id);
+    setPopupMessage("Are you sure you want to delete this job?");
+    setIsSuccess(false);
+    setShowPopup(true);
   };
 
-  if (loading)        return <p className="status">Loading…</p>;
-  if (error)          return <p className="status error">{error}</p>;
-  if (!jobs.length)   return <p className="status">You haven’t posted any jobs yet.</p>;
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/jobs/${id}`);
+      setJobs((prev) => prev.filter((j) => j._id !== id));
+      showNotification("Job deleted successfully", true);
+    } catch (err) {
+      console.error(err);
+      showNotification("Delete failed - please try again", false);
+    }
+    setJobToDelete(null);
+  };
+
+  if (loading) return <p className="status">Loading…</p>;
+  if (error) return <p className="status error">{error}</p>;
+  if (!jobs.length) return <p className="status">You haven't posted any jobs yet.</p>;
 
   return (
-    <div className="manage-jobs">
-      <h2 style={{background:"none"}}>Your Posted Jobs</h2>
-<h3>Your Posted jobs</h3>
-      <div className="card-grid">
-      
-        {jobs.map(job => (
-          <article key={job._id} className="job-card">
-            <header>
-              <h3>{job.jobTitle}</h3>
-              <p className="meta">{job.category} • {job.location}</p>
-            </header>
+    <>
+      {/* Popup Notification */}
+      {showPopup && (
+        <div className={`popup-notification ${isSuccess ? "success" : "error"}`}>
+          {popupMessage}
+          {!isSuccess && jobToDelete && (
+            <div className="popup-buttons">
+              <button
+                onClick={() => {
+                  handleDelete(jobToDelete);
+                  setShowPopup(false);
+                }}
+                className="popup-confirm"
+              >
+                Yes
+              </button>
+              <button
+                onClick={() => setShowPopup(false)}
+                className="popup-cancel"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    <div className="manage">
+    
 
-            <p className="desc">Description:  {job.jobDescription}</p>
+      <div className="manage-jobs">
+        <h2 style={{ background: "none" }}>Your Posted Jobs</h2>
+        <h3>Your Posted jobs</h3>
 
-            {/* <details>
-              <summary>Responsibilities</summary>
+        <div className="card-grid">
+          {jobs.map((job) => (
+            <article key={job._id} className="job-card" style={{ background: "none" }}>
+              <header>
+                <h3>{job.jobTitle}</h3>
+                <p className="meta">
+                  {job.category} • {job.location}
+                </p>
+              </header>
+
+              <p className="desc">Description: {job.jobDescription}</p>
+
+              <h4>Responsibilities</h4>
               <ul>
-                {(job.jobRequirement || []).map((item, i) => <li key={i}>{item}</li>)}
+                {(job.jobRequirement || []).map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
               </ul>
-            </details>
 
-            <details>
-              <summary>Skills Required</summary>
+              <h4>Skills Required</h4>
               <ul>
-                {(job.skillsRequired || []).map((s, i) => <li key={i}>{s}</li>)}
+                {(job.jobSkills || []).map((s, i) => (
+                  <li key={i}>{s}</li>
+                ))}
               </ul>
-            </details> */}
-<h4>Responsibilities</h4>
-<ul>
-  {(job.jobRequirement || []).map((item, i) => <li key={i}>{item}</li>)}
-</ul>
 
-<h4>Skills Required</h4>
-<ul>
-  {(job.skillsRequired || []).map((s, i) => <li key={i}>{s}</li>)}
-</ul>
-
-
-            <button className="delete-btn" onClick={() => handleDelete(job._id)}>
-              Delete Job
-            </button>
-          </article>
-        ))}
+              <button
+                className="delete-btn"
+                onClick={() => confirmDelete(job._id)}
+              >
+                Delete Job
+              </button>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
+    </>
   );
 };
 

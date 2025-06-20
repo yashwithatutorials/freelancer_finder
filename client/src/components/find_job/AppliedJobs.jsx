@@ -26,7 +26,10 @@ const AppliedJobs = () => {
 
       .catch((err) => console.error("Fetch applied jobs error", err));
   }, [user.email, user.role, navigate]);
-
+ const fileURL = (f) =>
+    f && !f.startsWith("http")
+      ? `http://localhost:8080/${f.startsWith("uploads/") ? "" : "uploads/"}${f}`
+      : f || "/default-avatar.png";
   return (
     <div className="applied-jobs-page">
       <h2>My Applied Jobs</h2>
@@ -35,9 +38,17 @@ const AppliedJobs = () => {
       ) : (
         <div className="job-list">
           {appliedJobs.map((job) => (
-           <div key={job._id} className="job-card" style={{ background: "#f2f2f2", color: "#000", padding: "1rem", marginBottom: "1rem", borderRadius: "8px" }}>
+           <div key={job._id} className="job-card" >
+           <img src={fileURL(job.companyLogo)} alt="logo" style={{width:"50px"}}/>
+           <h3>{job.companyName}</h3>
   <h3>{job.jobTitle || "Untitled Job"}</h3>
-  <p><strong>Company:</strong> {job.company || "Unknown"}</p>
+  {/* <p>
+  <strong>Company:</strong>{" "}
+  {job.companyName && job.companyName !== "Unknown"
+    ? job.companyName
+    : job.company || "Unknown"}
+</p> */}
+
   <p>{job.jobDescription || "No description available."}</p>
  <button
  className="chat-btn"
