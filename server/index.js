@@ -6,12 +6,14 @@ const bcrypt   = require("bcrypt");
 const multer   = require("multer");
 const path     = require("path");
 const fs       = require("fs");
+require("dotenv").config();
 
 const EmployeeModel = require("./models/Employee");
 const JobModel      = require("./models/Job");
 const MessageModel = require("./models/Message");
 const app  = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
+
 
 /* ─────────────  middleware  ───────────── */
 app.use(express.json());
@@ -38,6 +40,7 @@ const uploadFields = upload.fields([
   { name: "profileImage", maxCount: 1 }
 ]);
 app.use("/uploads", express.static("uploads"));
+const BASE_URL = process.env.BASE_URL;
 
 /* ─────────────  DB connect  ───────────── */
 // mongoose
@@ -47,12 +50,15 @@ app.use("/uploads", express.static("uploads"));
 //   })
 //   .then(() => console.log("MongoDB connected"))
 //   .catch((err) => console.error("MongoDB error:", err));
-mongoose
-  .connect("mongodb+srv://yashwithareddy1212:Yashu2004@cluster0.hdseipc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log("MongoDB connected"))
+// mongoose
+//   .connect("mongodb+srv://yashwithareddy1212:Yashu2004@cluster0.hdseipc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   })
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB error:", err));
 
 /* ════════════  AUTH  ════════════ */
@@ -338,9 +344,9 @@ app.get("/api/employers/applicants", async (req, res) => {
         name: f.name,
         email: f.email,
         skills: f.skills,
-        resume: f.resume ? `http://localhost:${PORT}/uploads/${f.resume}` : null,
+        resume: f.resume ? `https://freelancer-finder.onrender.com/uploads/${f.resume}` : null,
         profileImage: f.profileImage
-          ? `http://localhost:${PORT}/uploads/${f.profileImage}`
+          ? `https://freelancer-finder.onrender.com/uploads/${f.profileImage}`
           : null,
         applications: apps,
       };
@@ -438,7 +444,7 @@ app.post("/api/messages", upload.single("file"), async (req, res) => {
 
 /* helper: add absolute URLs and hide password */
 function fileURL(file) {
-  return file ? `http://localhost:${PORT}/uploads/${file}` : null;
+  return file ? `https://freelancer-finder.onrender.com/uploads/${file}` : null;
 }
 
 function formatUser(u) {
@@ -460,30 +466,9 @@ function formatUser(u) {
   };
 }
 
-/* decorateJob – one place to make jobs look exactly like the React view wants */
-// function decorateJob(job, employer) {
-//   const url = (f) => (f ? `http://localhost:${PORT}/uploads/${f}` : null);
-//   return {
-//     _id            : job._id,
-//     jobTitle       : job.jobTitle       ?? job.title,
-//     jobDescription : job.jobDescription ?? job.description,
-//     jobRequirement : job.jobRequirement ?? job.requirement,
-//     jobSkills      : job.jobSkills      ?? job.skills,
-//     category       : job.category,
-//     location       : job.location,
-//     level          : job.level,
-//     employerEmail: job.employerEmail,
-//     companyName: job.companyName ?? "Unknown",
-//     company        : employer?.name  ?? "Unknown",
-//     companyLogo: url(employer?.companyLogo ?? job.companyLogo),
 
-//     applicants     : job.applicants,
-//     createdAt      : job.createdAt,
-//     updatedAt      : job.updatedAt
-//   };
-// }
 function decorateJob(job, employer) {
-  const url = (f) => (f ? `http://localhost:${PORT}/uploads/${f}` : null);
+  const url = (f) => (f ? `https://freelancer-finder.onrender.com/uploads/${f}` : null);
   return {
     _id            : job._id,
     jobTitle       : job.jobTitle ?? job.title,
