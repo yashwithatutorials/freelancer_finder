@@ -443,8 +443,11 @@ app.post("/api/messages", upload.single("file"), async (req, res) => {
 });
 
 /* helper: add absolute URLs and hide password */
+// function fileURL(file) {
+//   return file ? `https://freelancer-finder.onrender.com/uploads/${file}` : null;
+// }
 function fileURL(file) {
-  return file ? `https://freelancer-finder.onrender.com/uploads/${file}` : null;
+  return file ? `${BASE_URL}/uploads/${file}` : null;
 }
 
 function formatUser(u) {
@@ -468,7 +471,8 @@ function formatUser(u) {
 
 
 function decorateJob(job, employer) {
-  const url = (f) => (f ? `https://freelancer-finder.onrender.com/uploads/${f}` : null);
+  // const url = (f) => (f ? `https://freelancer-finder.onrender.com/uploads/${f}` : null);
+  const url = (f) => (f ? `${BASE_URL}/uploads/${f}` : null);
   return {
     _id            : job._id,
     jobTitle       : job.jobTitle ?? job.title,
