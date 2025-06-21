@@ -4,7 +4,7 @@ import './About.css'
 
 const About = ({id}) => {
   return (
-    <div id={id} style={{backgroundColor:"black"}}>
+    <div id={id} style={{backgroundColor:"black",paddingTop:"40px"}}>
     <h1 style={{textAlign:"center",color:"rgb(8, 176, 188)",paddingTop:"130px",fontSize:"70px"}}>ABOUT US</h1>
         <div className='about_page'>
         <div className='about_text'>

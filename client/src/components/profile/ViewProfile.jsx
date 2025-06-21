@@ -46,7 +46,7 @@ const [showPopup, setShowPopup] = useState(false);
         if (parsed.companyLogo) {
           const logoUrl = parsed.companyLogo.startsWith('http') 
             ? parsed.companyLogo 
-            : `http://localhost:8080/uploads/${parsed.companyLogo}`;
+            : `https://freelancer-finder.onrender.com/uploads/${parsed.companyLogo}`;
           setCompanyLogo(logoUrl);
         }
       }
@@ -85,7 +85,7 @@ const showNotification = (message, success) => {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/api/employees/update', {
+      const response = await fetch('https://freelancer-finder.onrender.com/api/employees/update', {
         method: 'PUT',
         body: formData,
       });
@@ -104,7 +104,7 @@ const showNotification = (message, success) => {
         const logoUrl = updatedUser.companyLogo 
           ? updatedUser.companyLogo.startsWith('http') 
             ? updatedUser.companyLogo 
-            : `http://localhost:8080/uploads/${updatedUser.companyLogo}`
+            : `https://freelancer-finder.onrender.com/uploads/${updatedUser.companyLogo}`
           : null;
 
         // Update localStorage with all user data
@@ -154,7 +154,7 @@ showNotification("Profile updated successfully!", true);
             user?.profileImage
               ? (user.profileImage.startsWith('http') 
                   ? user.profileImage 
-                  : `http://localhost:8080/uploads/${user.profileImage}`)
+                  : `https://freelancer-finder.onrender.com/uploads/${user.profileImage}`)
               : '/default-profile.png'
           }
           alt="Profile"

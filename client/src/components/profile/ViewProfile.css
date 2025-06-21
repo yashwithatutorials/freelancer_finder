@@ -64,8 +64,8 @@
 /* Popup Notification Styles */
 .popup-notification {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 50px;
+  right: 100px;
   padding: 15px 25px;
   border-radius: 5px;
   color: white;
