@@ -1,16 +1,14 @@
-
 import './App.css'
 import Login from './components/Login/Login'
 // import Navbar from './components/navbar/Navbar'
 import Signup from './components/Login/Signup'
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
-import Footer from './components/footer/Footer'
+
 import Home from './components/Home/Home'
 import LoginNav from './components/Login/LoginNav'
 import About from './components/Home/About'
 import ViewProfile from './components/profile/ViewProfile'
 import Jobportal from './components/find_job/Jobportal'
-// import Logout from './components/Login/Logout'
 import Freelance_finder from './components/find_freelancer/Freelance_finder'
 import Job_details from './components/job_details/Job_details'
 import Postjob from './components/job_details/Postjob'
@@ -18,6 +16,7 @@ import Details from './components/find_freelancer/Details'
 import ViewJob from './components/find_job/Viewjob'
 import ChatRoom from './components/chat/ChatRoom'
 import AppliedJobs from './components/find_job/AppliedJobs'
+import Footer from './components/footer/Footer'
 function App() {
  
 
@@ -48,6 +47,7 @@ function App() {
       </Routes>
      </BrowserRouter>
       {/* <Home/> */}
+     {/* <Footer/> */}
      <Footer/>
     </>
   )
