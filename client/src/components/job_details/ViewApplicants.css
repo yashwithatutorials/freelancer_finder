@@ -1,186 +1,4 @@
-/* .view-applicants-container {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8fafc;
-  color: #1f2937;
-}
 
-h1 {
-  text-align: center;
-  color: #0f172a;
-  margin-bottom: 1.5rem;
-}
-
-label {
-  display: block;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-select {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  font-size: 1rem;
-  margin-left: 0.5rem;
-}
-
-.applicants-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.applicant-card {
-  background-color: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-width: 340px;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  transition: transform 0.2s ease;
-}
-
-.applicant-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-.applicant-card header {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.applicant-card img {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #3b82f6;
-}
-
-.applicant-card h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #1e40af;
-}
-
-.applicant-card p {
-  margin: 0.2rem 0;
-  font-size: 0.95rem;
-  color: #475569;
-}
-
-.skills {
-  color: #10b981;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.application-block {
-  background-color: #f1f5f9;
-  border-radius: 8px;
-  padding: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-.application-block h4 {
-  margin: 0;
-  font-size: 1rem;
-  color: #0f172a;
-}
-
-.application-block small {
-  display: block;
-  color: #64748b;
-  margin-bottom: 0.4rem;
-}
-
-.application-block label {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #1e293b;
-}
-
-.application-block select {
-  width: 100%;
-  padding: 0.4rem;
-  margin-top: 0.3rem;
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  background-color: #ffffff;
-}
-
-footer {
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.resume-link,
-footer a {
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.5rem 0.75rem;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
-}
-
-.resume-link:hover,
-footer a:hover {
-  background-color: #2563eb;
-}
-
-.message-button {
-  background-color: #10b981;
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
-}
-
-.message-button:hover {
-  background-color: #059669;
-}
-
-
-@media (max-width: 768px) {
-  .applicants-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .applicant-card {
-    max-width: 90%;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .applicant-card {
-    max-width: 48%;
-  }
-} */
-
-
-
-/* ---------- container ---------- */
 .view-applicants-container {
   max-width: 1200px;
   margin: auto;
@@ -194,7 +12,6 @@ footer a:hover {
   margin-bottom: 1rem;
 }
 
-/* ---------- filter strip ---------- */
 .view-applicants-container label {
   font-weight: 600;
 }
@@ -204,8 +21,6 @@ footer a:hover {
   border: 1px solid #cbd5e1;
   border-radius: 6px;
 }
-
-/* ---------- flex grid ---------- */
 .applicants-grid {
   display: flex;
   flex-wrap: wrap;
@@ -214,9 +29,8 @@ footer a:hover {
   justify-content: center;
 }
 
-/* ---------- card ---------- */
 .applicant-card {
-  flex: 1 1 340px;          /* never below 340px */
+  flex: 1 1 340px;          
   max-width: 380px;
   display: flex;
   flex-direction: column;
@@ -245,7 +59,6 @@ footer a:hover {
 .applicant-card p    { margin: .15rem 0; font-size: .9rem; }
 .skills { color:#10b981; font-weight:500; }
 
-/* ---------- application section ---------- */
 .application-block {
   background:#f1f5f9;
   border-radius:8px;
@@ -261,9 +74,8 @@ footer a:hover {
   border-radius:6px;
 }
 
-/* ---------- footer buttons ---------- */
 footer {
-  margin-top:auto;           /* push to bottom */
+  margin-top:auto;          
   display:flex;
   gap:.55rem;
   flex-wrap:wrap;
@@ -294,7 +106,6 @@ footer button {
 .contact-btn:hover { background:#0891b2; }
 .view-btn:hover    { background:#2563eb; }
 
-/* ---------- mobile ---------- */
 @media (max-width:768px){
   .applicant-card { flex:1 1 100%; max-width:98%; }
 }

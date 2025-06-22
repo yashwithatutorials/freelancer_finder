@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="footer-wave"></div>
       
       <div className="footer-container">
-        {/* Column 1 - Logo and Basic Info */}
+       
         <div className="footer-column logo-column">
           <img src={img} alt="Freelancer Logo" className="footer-logo"/>
           <p className="footer-description">Connecting businesses with top freelance talent worldwide</p>
@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Column 2 - Freelancer Links */}
+     
         <div className="footer-column">
           <h3>Freelancer</h3>
           <ul>
@@ -44,8 +44,6 @@ const Footer = () => {
             ))}
           </ul>
         </div>
-
-        {/* Column 3 - About Links */}
         <div className="footer-column">
           <h3>About</h3>
           <ul>
@@ -55,8 +53,6 @@ const Footer = () => {
             ))}
           </ul>
         </div>
-
-        {/* Column 4 - Terms Links */}
         <div className="footer-column">
           <h3>Terms</h3>
           <ul>
@@ -68,7 +64,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Social Media Section */}
       <div className="social-icons-container">
   <h3>Connect With Us</h3>
   <div className="social-icons">

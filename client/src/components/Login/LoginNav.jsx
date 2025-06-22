@@ -14,8 +14,6 @@ const LoginNav = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-    //    const parsedUser = JSON.parse(storedUser);
-    // console.log("Loaded user:", parsedUser);
       setUser(JSON.parse(storedUser));
     }
   }, []);
@@ -78,11 +76,11 @@ const LoginNav = () => {
               className="profile-wrapper"
               onClick={()=>setShowProfile(!showProfile)}>
               <div className='pro'>
-              {/* <AccountCircleIcon style={{ fontSize: "50px", color: "white" }} /> */}
+             
             <img 
  src={
   user?.profileImage
-    ? (user.profileImage.startsWith('http') ? user.profileImage : `http://localhost:8080/uploads/${user.profileImage}`)
+    ? (user.profileImage.startsWith('http') ? user.profileImage : `https://freelancer-finder.onrender.com/uploads/${user.profileImage}`)
     : '/default-profile.png'
 }
 
@@ -94,7 +92,6 @@ const LoginNav = () => {
                </div>
               {showProfile && (
                 <div className="profile-dropdown">
-                  {/* <p><strong>{user.name}</strong></p> */}
                   <div className='text-center' style={{padding:"10px"}}>
                   <button className='view'><a href='/ViewProfile' style={{textDecoration:"none",color:"white",fontWeight:"700"}}>View Profile</a></button>
                   <button onClick={logout} className="logout-btn">Logout</button>

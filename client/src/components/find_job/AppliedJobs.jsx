@@ -17,7 +17,7 @@ const AppliedJobs = () => {
    axios.get(`https://freelancer-finder.onrender.com/api/jobs`)
   .then((res) => {
     const jobs = res.data;
-    console.log("Jobs received:", jobs); // 👈 add this
+    console.log("Jobs received:", jobs); 
     const myJobs = jobs.filter(j =>
       j.applicants?.some(a => a.freelancerEmail === user.email)
     );
@@ -42,12 +42,6 @@ const AppliedJobs = () => {
            <img src={fileURL(job.companyLogo)} alt="logo" style={{width:"50px"}}/>
            <h3>{job.companyName}</h3>
   <h3>{job.jobTitle || "Untitled Job"}</h3>
-  {/* <p>
-  <strong>Company:</strong>{" "}
-  {job.companyName && job.companyName !== "Unknown"
-    ? job.companyName
-    : job.company || "Unknown"}
-</p> */}
 
   <p>{job.jobDescription || "No description available."}</p>
  <button

@@ -6,13 +6,10 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Viewjob.css";
 
-/* to absolute URL */
 const fileURL = (f) =>
   f && !f.startsWith("http")
     ? `https://freelancer-finder.onrender.com/${f.startsWith("uploads/") ? "" : "uploads/"}${f}`
     : f || "/default-avatar.png";
-
-/* local cache { jobId : status } */
 const loadLocal = (email) =>
   JSON.parse(localStorage.getItem(`jobStatuses_${email}`) || "{}");
 const saveLocal = (email, o) =>
@@ -25,15 +22,13 @@ export default function ViewJob() {
   const [jobs,     setJobs]     = useState([]);
   const [selected, setSelected] = useState(null);
   const [statuses, setStatuses] = useState(() => loadLocal(email));
-
-  /* fetch all jobs once */
   useEffect(() => {
     (async () => {
-      const { data=[] } = await axios.get("http://localhost:8080/api/jobs");
+      const { data=[] } = await axios.get("https://freelancer-finder.onrender.com/api/jobs");
       const fromServer  = {};
       data.forEach(j => {
         const a = j.applicants?.find(x => x.freelancerEmail === email);
-        if (a) fromServer[j._id] = a.status;          // pending | reviewed | hired | rejected
+        if (a) fromServer[j._id] = a.status;          
       });
       const merged = { ...loadLocal(email), ...fromServer };
       setStatuses(merged);
@@ -45,14 +40,12 @@ export default function ViewJob() {
       );
     })();
   }, [email, jobId]);
-
-  /* apply → pending */
   const apply = useCallback(async (job) => {
     if (!email) return alert("Please log in first");
     if (!job || statuses[job._id]) return;
 
     try {
-      await axios.post(`http://localhost:8080/api/jobs/${job._id}/apply`, { userEmail: email });
+      await axios.post(`https://freelancer-finder.onrender.com/api/jobs/${job._id}/apply`, { userEmail: email });
       setStatuses(prev => {
         const next = { ...prev, [job._id]: "pending" };
         saveLocal(email, next);

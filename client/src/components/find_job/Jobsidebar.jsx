@@ -1,7 +1,6 @@
 
 
 import React, { useState, useEffect } from 'react';
-// import './Jobsidebar.css';
 import '../find_freelancer/Sidebar.css'
 
 export default function Jobsidebar({ onFilterChange }) {
@@ -13,7 +12,7 @@ export default function Jobsidebar({ onFilterChange }) {
   'Video Editor', 'Photography', 'Financial Advisor'];
   const locations = ['Bangalore', 'Mumbai', 'Hyderabad', 'Delhi'];
 
-  // Update filter whenever selections change
+
   useEffect(() => {
     onFilterChange({
       categories: selectedCategories,
@@ -21,7 +20,7 @@ export default function Jobsidebar({ onFilterChange }) {
     });
   }, [selectedCategories, selectedLocations, onFilterChange]);
 
-  // Helper for checkbox toggling
+
   const toggleSelection = (value, setState, state) => {
     if (state.includes(value)) {
       setState(state.filter(v => v !== value));

@@ -114,11 +114,11 @@
 .status.error {
   color: #dc2626;
 }
-/* Popup Notification Styles */
+
 .popup-notification {
   position: fixed;
-  top: 20%;
-  left: 92%;
+ top: 20%;
+ left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
   border-radius: 8px;
@@ -175,6 +175,4 @@
     transform: translate(-50%, -50%);
   }
 }
-
-/* Existing styles... */
 

@@ -13,7 +13,6 @@ const Postjob = () => {
   const [showPopup,setShowPopup]=useState(false);
   const [popupMessage,setPopupMessage]=useState('');
   const [isSuccess,setIsSuccess]=useState(false);
-  /* grab employer e‑mail straight from localStorage once */
   const email = React.useMemo(() => {
     const u = JSON.parse(localStorage.getItem('user') || '{}');
     return u.email || '';
@@ -24,11 +23,8 @@ const showNotification=(message,success)=>{
   setShowPopup(true);
   setTimeout(()=>setShowPopup(false),3000);
 }
-  /* ---------------- submit handler ---------------- */
   async function handleSubmit(e) {
     e.preventDefault();
-
-    /* quick front‑end validation */
     if (!title || !descrip || !requirement || !category || !loca) {
       showNotification('please fill in every required fields.',false);
       return ;
@@ -39,7 +35,7 @@ const showNotification=(message,success)=>{
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body   : JSON.stringify({
-          email,                    // who is posting
+          email,                    
           title,
           descrip,
           loca,
@@ -51,7 +47,7 @@ const showNotification=(message,success)=>{
 
       if (!res.ok) throw new Error(await res.text());
 
-      /* success! */
+      
       showNotification('🎉  Job posted successfully',true);
       setTitle(''); setDescrip(''); setRequirement('');
       setSkillreq(''); setCategory(''); setLoca('');
@@ -61,7 +57,6 @@ const showNotification=(message,success)=>{
     }
   }
 
-  /* ---------------- render ---------------- */
   return (
     <div className="post">
     {showPopup&&(
@@ -70,7 +65,6 @@ const showNotification=(message,success)=>{
       </div>
     )}
       <form className="job-form-container" onSubmit={handleSubmit}>
-        {/* Job Title */}
         <div className="job-form-group">
           <label className="job-form-label">Job Title<span>*</span></label>
           <input
@@ -80,8 +74,6 @@ const showNotification=(message,success)=>{
             placeholder="e.g. Full‑Stack Developer"
           />
         </div>
-
-        {/* Description */}
         <div className="job-form-group">
           <label className="job-form-label">Job Description<span>*</span></label>
           <textarea
@@ -92,7 +84,6 @@ const showNotification=(message,success)=>{
           />
         </div>
 
-        {/* Requirements */}
         <div className="job-form-group">
           <label className="job-form-label">Key Requirements<span>*</span></label>
           <textarea
@@ -103,7 +94,6 @@ const showNotification=(message,success)=>{
           />
         </div>
 
-        {/* Skills */}
         <div className="job-form-group">
           <label className="job-form-label">Skills Required</label>
           <textarea
@@ -113,8 +103,6 @@ const showNotification=(message,success)=>{
             placeholder="e.g. React, Node, MongoDB"
           />
         </div>
-
-        {/* Row: category & location */}
         <div className="job-form-row">
           <div>
             <label className="job-form-label">Job Category<span>*</span></label>
@@ -145,7 +133,6 @@ const showNotification=(message,success)=>{
           </div>
         </div>
 
-        {/* Submit */}
         <button type="submit" className="job-form-button">
           ADD
         </button>

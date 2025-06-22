@@ -28,13 +28,11 @@ const Login = () => {
             const userEmail=result.data.email|| result.data.user.email;
             localStorage.setItem("email",userEmail);
   localStorage.setItem("user", JSON.stringify(userData)); 
-  navigate('/Home');
    showNotification("Login successful!", true);
                     setTimeout(() => {
                         navigate('/Home');
                         window.location.reload();
                     }, 1000);
-//   window.location.reload(); 
 }
             else{
                 showNotification("Invalid login credentials", false);

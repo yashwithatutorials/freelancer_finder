@@ -8,9 +8,6 @@ const Freelance_finder = () => {
   return (
     <>
        <div className='freelancer_find'> 
-        {/* <TopSearch/> */}
-        {/* <Sidebar/> */}
-        {/* <ClientList/> */}
         <FreelancerList/>
         </div>
     </>

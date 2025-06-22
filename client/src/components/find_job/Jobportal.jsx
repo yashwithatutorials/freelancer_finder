@@ -9,8 +9,6 @@ export default function Jobportal() {
   const [filters, setFilters] = useState({ categories: [], locations: [] });
   const [query,   setQuery]   = useState("");
   const [jobs,    setJobs]    = useState([]);
-
-  /* fetch + optional filtering */
   const fetchJobs = useCallback(async () => {
     const res  = await fetch("https://freelancer-finder.onrender.com/api/jobs");
     const data = await res.json();

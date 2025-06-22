@@ -8,16 +8,15 @@ export default function ViewApplicants() {
   const navigate = useNavigate();
 
   const [jobs, setJobs] = useState([]);
-  const [apps, setApps] = useState([]);   // flattened
+  const [apps, setApps] = useState([]);  
   const [filterJobId, setFilterJobId] = useState("");
   const [jobCounts, setJobCounts] = useState({});
 
-  // 🔐 Redirect if not employer
   useEffect(() => {
     if (!user.email || user.role !== "client") navigate("/login");
   }, [user, navigate]);
 
-  // 📦 Fetch jobs + applicants
+
   useEffect(() => {
     (async () => {
       try {
@@ -28,7 +27,6 @@ export default function ViewApplicants() {
 
         setJobs(jobsRes.data);
 
-        // 🔄 Flatten applicants
         const flattened = appsRes.data.flatMap((freelancer) =>
           freelancer.applications.map((app) => ({
             ...app,
@@ -43,8 +41,6 @@ export default function ViewApplicants() {
         );
 
         setApps(flattened);
-
-        // 🧮 Count applicants per job
         const counts = {};
         flattened.forEach((a) => {
           const jobId = String(a.jobId);
@@ -57,7 +53,6 @@ export default function ViewApplicants() {
     })();
   }, [user.email]);
 
-  // 🔁 Status update
   const updateStatus = async (freelancerId, jobId, status) => {
     await axios.put("https://freelancer-finder.onrender.com/api/applications/status", {
       freelancerId,
@@ -71,14 +66,12 @@ export default function ViewApplicants() {
     );
   };
 
-  // 🔍 Filter by job
   const filtered = filterJobId === "" ? apps : apps.filter((a) => a.jobId === filterJobId);
 
   return (
     <div className="view-applicants-container">
       <h1>Job Applicants</h1>
 
-      {/* 🔽 Job Filter Dropdown */}
       <label className="filter-dropdown">
         Filter by Job:&nbsp;
         <select value={filterJobId} onChange={(e) => setFilterJobId(e.target.value)}>
@@ -91,7 +84,6 @@ export default function ViewApplicants() {
         </select>
       </label>
 
-      {/* 🧾 No Applicants */}
       {filtered.length === 0 ? (
         <p>No applicants yet.</p>
       ) : (
