@@ -23,7 +23,6 @@ const AppliedJobs = () => {
     );
     setAppliedJobs(myJobs);
   })
-
       .catch((err) => console.error("Fetch applied jobs error", err));
   }, [user.email, user.role, navigate]);
  const fileURL = (f) =>

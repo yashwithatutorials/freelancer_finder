@@ -74,7 +74,7 @@ export default function ViewJob() {
             <div>
               <h2>{selected.jobTitle}</h2>
               <div className="job-meta">
-                <span>🏢 {selected.company}</span>
+                <span>🏢 {selected.companyName}</span>
                 <span>📍 {selected.location}</span>
               </div>
             </div>

@@ -201,7 +201,7 @@ showNotification("Profile updated successfully!", true);
           {user.resume && (
                     <img
                       src={user.resume}
-                      alt="Company Logo"
+                      alt="resume"
                       style={{ width: '100px', height: '100px', marginTop: '10px' }}
                     />
                   )}

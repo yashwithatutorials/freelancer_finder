@@ -3,7 +3,7 @@ import React, { useState,useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from "../images/sb_works.jpg";
 import './LoginNav.css';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 const LoginNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
  const [user, setUser] = useState(null);
@@ -52,6 +52,9 @@ const LoginNav = () => {
           <MenuIcon style={{ fontSize: "50px" }} />
         </div>
         <div className={`cont ${menuOpen ? 'show' : ''}`}>
+         <div className='nav-spacer'></div>
+          
+          <div className='nav-right-content'>
           <div className='nav-tab'>
           <a href='/Home' className='ab'>Home</a>
             <a href='#about-section' className='ab'>About</a>
@@ -105,7 +108,7 @@ const LoginNav = () => {
               <a href='/Signup' className='lo'><button className='go2'>Sign Up</button></a>
             </div>
           )}
-         
+         </div>
         </div>
       </nav>
     </>

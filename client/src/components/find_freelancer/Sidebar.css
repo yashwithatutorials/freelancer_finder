@@ -1,4 +1,4 @@
-
+/* 
 .sidebar {
   background-color: #000;
   color: #fff;
@@ -109,4 +109,140 @@
     gap: 6px;
   }
 }
+ */
 
+
+.sidebar {
+  padding: 1.5rem;
+  background-color: #000;
+  color: white;
+  width: 100%;
+  border-right: 1px solid #333;
+}
+
+.sidebar h3 {
+  color: skyblue;
+  font-size: 24px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #47ecec;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+  
+}
+
+.filter-group h4 {
+  color: skyblue;
+  font-size: 20px;
+  padding: 9px 0;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-group label:hover {
+  background-color: #222;
+}
+
+.filter-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  accent-color: #47ecec;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    width: 280px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .filter-group h4 {
+    font-size: 22px;
+  }
+
+  .filter-group label {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 300px;
+    padding: 2rem;
+  }
+
+  .sidebar h3 {
+    font-size: 26px;
+  }
+
+  .filter-group h4 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid #333;
+    padding: 1rem;
+  }
+
+  .sidebar h3 {
+    font-size: 22px;
+    margin-bottom: 1rem;
+  }
+
+  .filter-group {
+    margin-bottom: 1rem;
+  }
+
+  .filter-group h4 {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-group label {
+    padding: 6px 10px;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+  }
+
+  .filter-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 0.8rem;
+  }
+
+  .filter-group {
+    margin-bottom: 0.8rem;
+  }
+
+  .filter-group h4 {
+    padding: 5px 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-group label {
+    padding: 5px 8px;
+  }
+}

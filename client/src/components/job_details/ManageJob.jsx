@@ -69,7 +69,6 @@ const ManageJob = () => {
 
   return (
     <>
-      {/* Popup Notification */}
       {showPopup && (
         <div className={`popup-notification ${isSuccess ? "success" : "error"}`}>
           {popupMessage}
