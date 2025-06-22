@@ -51,6 +51,7 @@ export default function Jobportal() {
               <h3>{job.jobTitle}</h3>
               <div className="job_tags">
                 <span>{job.location}</span>
+                <span>{job.category}</span>
               </div>
               <p>{job.jobDescription?.slice(0, 150)}…</p>
               <div className="job_buttons">

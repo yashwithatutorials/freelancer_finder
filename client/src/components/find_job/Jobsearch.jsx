@@ -20,7 +20,7 @@ export default function Jobsearch({ onSearch }) {
    const val = e.target.value;
    setText(val);
    onSearch(val.trim());   
- }} />
+ }} style={{color:"white"}} />
         <button type="submit">Search</button>
       </form>
     </header>

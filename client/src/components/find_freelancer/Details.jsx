@@ -69,6 +69,7 @@ const Details = () => {
             <img src={f.profileImage || "/default-avatar.png"} alt={f.name} />
             <h4>{f.name}</h4>
             <p>{f.location}</p>
+            <p>Experience: {f.experience||0} years</p>
             <p>{f.skills?.slice(0, 2).join(", ")}</p>
 
             <div className="job_buttons">

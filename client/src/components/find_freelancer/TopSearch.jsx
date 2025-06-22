@@ -17,7 +17,7 @@ export default function TopSearch({ onSearch }) {
           placeholder="Search freelancer name…"
           value={text}
           onChange={(e) => setText(e.target.value)}
-        />
+       style={{color:"white"}} />
         <button type="submit">Search</button>
       </form>
     </header>

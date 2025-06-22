@@ -194,7 +194,10 @@ showNotification("Profile updated successfully!", true);
       value={skills}
       onChange={setSkills}
       placeholder="Select skills..."
-    />
+    className='Select' />
+    <h3><strong>Experience:</strong>
+    <input type='number' value={experience}  onChange={(e)=>setExperience(e.target.value)}/>
+    </h3>
     <div className='res'>
        <label style={{ display: "flex" }}>
          <h3><strong>Resume:</strong></h3>
