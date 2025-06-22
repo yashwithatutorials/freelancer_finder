@@ -9,13 +9,13 @@ const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 const navigate=useNavigate();
 useEffect(() => {
-    // Check if user is logged in
+   
     const user = JSON.parse(localStorage.getItem('user') || '{}')
     setIsLoggedIn(!!user.email)
   }, [])
   const content = {
     browse: {
-      text: 'Build your freelancing career on fli freelance, with \nthousands of jobs posted every week.',
+      text: 'Build your freelancing career on SB Works, with \nthousands of jobs posted every week.',
       button: 'Explore recently posted jobs',
       path:'/jobportal'
     },
@@ -27,7 +27,7 @@ useEffect(() => {
   };
    const handleButtonClick = () => {
     if (!isLoggedIn) {
-      // Store intended path before redirecting to login
+      
       localStorage.setItem('redirectPath', content[activeTab].path)
       navigate('/login')
       return

@@ -41,8 +41,6 @@ const [showPopup, setShowPopup] = useState(false);
         setDescription(parsed.description || '');
         setProjects(parsed.projects || '');
         setExperience(parsed.experience || '');
-        
-        // Handle company logo URL
         if (parsed.companyLogo) {
           const logoUrl = parsed.companyLogo.startsWith('http') 
             ? parsed.companyLogo 
@@ -100,23 +98,22 @@ const showNotification = (message, success) => {
       if (result.success) {
         const updatedUser = result.updatedUser;
         
-        // Process company logo URL
+       
         const logoUrl = updatedUser.companyLogo 
           ? updatedUser.companyLogo.startsWith('http') 
             ? updatedUser.companyLogo 
             : `https://freelancer-finder.onrender.com/uploads/${updatedUser.companyLogo}`
           : null;
 
-        // Update localStorage with all user data
+       
         localStorage.setItem("user", JSON.stringify({
           ...updatedUser,
-          companyLogo: updatedUser.companyLogo // Store just the filename/path
+          companyLogo: updatedUser.companyLogo
         }));
 
-        // Update all state variables
         setUser({
           ...updatedUser,
-          companyLogo: logoUrl // Store full URL in state
+          companyLogo: logoUrl 
         });
         setPhoneNumber(updatedUser.phoneNumber || '');
         setSkills(updatedUser.skills?.map(skill => ({ value: skill, label: skill })) || []);
@@ -127,15 +124,15 @@ const showNotification = (message, success) => {
         setExperience(updatedUser.experience || '');
         setCompanyLogo(logoUrl);
 showNotification("Profile updated successfully!", true);
-        // alert("Profile updated successfully!");
+       
       } else {
         showNotification("Update failed: " + result.message, false);
-        // alert("Update failed: " + result.message);
+        
       }
     } catch (err) {
       console.error("Update error:", err);
       showNotification("Update failed: " + err.message, false);
-      // alert("Update failed: " + err.message);
+      
     }
   };
 
@@ -189,7 +186,7 @@ showNotification("Profile updated successfully!", true);
 
           {user?.role === 'freelancer' ? (
             <div className='freelancer-section'>
-              {/* Freelancer-specific fields */}
+              
               <h3><strong>Skills:</strong></h3>
      <Select
       isMulti

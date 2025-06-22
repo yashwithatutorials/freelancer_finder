@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import "./ChatRoom.css";
-const api = axios.create({ baseURL: "http://localhost:8080" });
+const api = axios.create({ baseURL: "https://freelancer-finder.onrender.com" });
 
 export default function ChatRoom() {
   const q = new URLSearchParams(useLocation().search);
