@@ -24,25 +24,46 @@ const ManageJob = () => {
     setTimeout(() => setShowPopup(false), 3000);
   };
 
-  useEffect(() => {
-    if (!email) {
-      setError("User email missing.");
-      setLoading(false);
-      return;
-    }
+  // useEffect(() => {
+  //   if (!email) {
+  //     setError("User email missing.");
+  //     setLoading(false);
+  //     return;
+  //   }
 
-    axios
-      .get("https://freelancer-finder.onrender.com/api/jobs", { params: { email } })
-      .then((res) => {
-        setJobs(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError("Failed to load jobs");
-        showNotification("Failed to load jobs", false);
-      });
-  }, [email]);
+  //   axios
+  //     .get("https://freelancer-finder.onrender.com/api/jobs", { params: { email } })
+  //     .then((res) => {
+  //       setJobs(res.data);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       setError("Failed to load jobs");
+  //       showNotification("Failed to load jobs", false);
+  //     });
+  // }, [email]);
+  useEffect(() => {
+  if (!email) {
+    setError("User email missing.");
+    setLoading(false);
+    return;
+  }
+
+  axios
+    .get("https://freelancer-finder.onrender.com/api/jobs", { params: { email } })
+    .then(res => {
+      const myJobs = res.data.filter(j => j.employerEmail === email);
+      setJobs(myJobs);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error(err);
+      setError("Failed to load jobs");
+      showNotification("Failed to load jobs", false);
+      setLoading(false);                     // ← add this
+    });
+}, [email]);
 
   const confirmDelete = (id) => {
     setJobToDelete(id);

@@ -155,20 +155,22 @@ const validatePassword = (pwd) => {
           <div className="mb-3 d-flex gap-2">
             <button
               type='button'
-              className={`btn ${role === "client" ? "btn-primary" : "btn-outline-primary"} w-50 rounded-2`}
+              className={`btn ${role === "client" ? "btn-primary" : "btn-outline-primary"} w-50`}
               onClick={() => setRole("client")}
-            >
-              Signup as Client
+           >
+              <p style={{fontSize:"17px",color:"black"}} >  Signup as Client
+          </p>
             </button>
             <button
               type='button'
-              className={`btn ${role === "freelancer" ? "btn-primary" : "btn-outline-primary"} w-50 rounded-2`}
+              className={`btn ${role === "freelancer" ? "btn-primary" : "btn-outline-primary"} w-50  `}
               onClick={() => setRole("freelancer")}
             >
-              Signup as Freelancer
-            </button>
+            <p style={{fontSize:"17px",color:"black"}}>  Signup as Freelancer
+          </p>  
+          </button>
           </div>
-<label className='mt-3 d-block' style={{fontSize:"24px"}}>
+<label className='mt-3 d-block' style={{fontSize:"16px"}}>
             <input type='checkbox' required /> Accept all terms and conditions.
           </label>
           <button
