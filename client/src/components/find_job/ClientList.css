@@ -207,3 +207,11 @@
     padding: 5px 10px;
   }
 }
+.company-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  background: white;
+  border-radius: 4px;
+  padding: 5px;
+}

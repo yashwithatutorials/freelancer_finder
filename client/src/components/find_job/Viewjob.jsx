@@ -102,7 +102,7 @@ export default function ViewJob() {
       </article>
 
       <aside className="related-jobs">
-        <h3>More jobs from {selected.company}</h3>
+        <h3>More jobs from {selected.companyName}</h3>
         {related.slice(0,4).map(j => (
           <div key={j._id} className="related-job-card">
             <div className="related-job-header">

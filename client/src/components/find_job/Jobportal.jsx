@@ -28,12 +28,24 @@ export default function Jobportal() {
 
   useEffect(() => { fetchJobs(); }, [fetchJobs]);
 
- const fileURL = (f) =>
-  f?.startsWith("http") ? f
-  : f ? `https://freelancer-finder.onrender.com/uploads/${f.replace(/^uploads[\\/]/, "")}`
-  : "/default-avatar.png";
-
-
+//  const fileURL = (f) =>
+//   f?.startsWith("https") ? f
+//   : f ? `https://freelancer-finder.onrender.com/uploads/${f.replace(/^uploads[\\/]/, "")}`
+//   : "/default-avatar.png";
+const fileURL = (filename) => {
+  if (!filename) return "/default-company-logo.png";
+  if (filename.startsWith("http")) return filename;
+  
+  const baseUrl = `https://freelancer-finder.onrender.com/uploads/${filename.replace(/^uploads[\\/]/, "")}`;
+  return `${baseUrl}?v=${Date.now()}`; // Cache busting
+};
+console.log("Job data:", jobs.map(job => ({
+  id: job._id,
+  title: job.jobTitle,
+  companyLogo: job.companyLogo,
+  employerLogo: job.employer?.companyLogo,
+  profileImage: job.employer?.profileImage
+})));
   return (
     <div className="job_page">
       <Jobsidebar onFilterChange={setFilters} />
@@ -46,7 +58,17 @@ export default function Jobportal() {
         <div className="job_cards">
           {jobs.map((job) => (
             <div key={job._id} className="job_card">
-              <img src={fileURL(job.companyLogo)} alt="logo" />
+              {/* <img src={fileURL(job.companyLogo)} alt="logo" /> */}
+             
+<img 
+  src={fileURL(job.companyLogo)} 
+  alt={`${job.companyName} logo`}
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = "/default-company-logo.png";
+  }}
+  className="company-logo" // Add specific class
+/>
               <h3 style={{ fontWeight: 700, fontSize: 32 }}>{job.companyName}</h3>
               <h3>{job.jobTitle}</h3>
               <div className="job_tags">
