@@ -18,8 +18,6 @@ const PORT = process.env.PORT || 8080;
 /* ─────────────  middleware  ───────────── */
 app.use(express.json());
 app.use(cors());
-
-/* util: csv string → trimmed array  */
 const toArray = (val) =>
   Array.isArray(val)
     ? val.map((s) => String(s).trim())
@@ -39,8 +37,10 @@ const uploadFields = upload.fields([
   { name: "companyLogo",  maxCount: 1 },
   { name: "profileImage", maxCount: 1 }
 ]);
-app.use("/uploads", express.static("uploads"));
-const BASE_URL = process.env.BASE_URL;
+// app.use("/uploads", express.static("uploads"));
+const uploadsPath = path.join(__dirname, "uploads");
+ app.use("/uploads", express.static(uploadsPath));
+ const BASE_URL = process.env.BASE_URL || "https://freelancer-finder.onrender.com";
 
 /* ─────────────  DB connect  ───────────── */
 // mongoose
@@ -102,9 +102,7 @@ app.post("/login", async (req, res) => {
 
     if (!(await bcrypt.compare(password, user.password)))
       return res.json({ status: "error", message: "Invalid password" });
-
-    // res.json({ status: "success", user: formatUser(user),email:user.email });
-     res.json({ status: "success", user: formatUser(user) });
+  res.json({ status: "success", user: formatUser(user) });
   } catch (err) {
     console.error(err);
     res.status(500).json({ status: "error", message: "Server error", error: err.message });
@@ -128,7 +126,9 @@ app.put("/api/employees/update", uploadFields, async (req, res) => {
     ...(position    && { position }),
     ...(projects    && { projects }),
     companyName: companyName ?? '',
-    ...(description && { description })
+    ...(description && { description }),
+    ...(companyLogo&&{companyLogo}),
+    ...(resume&&{resume}),
   };
 
   if (skills) {
@@ -139,9 +139,12 @@ app.put("/api/employees/update", uploadFields, async (req, res) => {
     }
   }
 
-  if (req.files?.resume?.[0])      update.resume      = req.files.resume[0].filename;
-  if (req.files?.companyLogo?.[0]) update.companyLogo = req.files.companyLogo[0].filename;
-
+ if (req.files?.resume?.[0]) {
+   update.resume = req.files.resume[0].filename;          
+ }
+ if (req.files?.companyLogo?.[0]) {
+   update.companyLogo = req.files.companyLogo[0].filename; 
+}
   try {
     const user = await EmployeeModel.findOneAndUpdate({ email }, { $set: update }, { new: true });
     if (!user) return res.status(404).json({ success: false, message: "User not found" });
@@ -177,7 +180,7 @@ app.post("/api/jobs", async (req, res) => {
       location       : loca,
       level,
 company        : employer.name,
- companyName    : employer.companyName || employer.name,  // <= ALWAYS set
+ companyName    : employer.companyName || employer.name,  
  companyLogo    : employer.companyLogo || null
     });
 
@@ -471,7 +474,7 @@ function formatUser(u) {
 
 
 function decorateJob(job, employer) {
-  // const url = (f) => (f ? `https://freelancer-finder.onrender.com/uploads/${f}` : null);
+  
   const url = (f) => (f ? `${BASE_URL}/uploads/${f}` : null);
   return {
     _id            : job._id,
@@ -485,10 +488,12 @@ function decorateJob(job, employer) {
     employerEmail  : job.employerEmail,
     company        : employer?.name || "Unknown",
     companyName    : employer?.companyName || job.companyName ||employer?.name || "Unknown",
-    companyLogo : url(job.companyLogo || employer?.companyLogo),
+    // companyLogo : url(job.companyLogo ),
     applicants     : job.applicants,
     createdAt      : job.createdAt,
-    updatedAt      : job.updatedAt
+    updatedAt      : job.updatedAt,
+     companyLogo: employer?.companyLogo ? url(employer.companyLogo) : 
+               (job.companyLogo ? url(job.companyLogo) : null),
   };
 }
 
