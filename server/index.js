@@ -127,8 +127,7 @@ app.put("/api/employees/update", uploadFields, async (req, res) => {
     ...(projects    && { projects }),
     companyName: companyName ?? '',
     ...(description && { description }),
-    ...(companyLogo&&{companyLogo}),
-    ...(resume&&{resume}),
+  
   };
 
   if (skills) {
@@ -146,7 +145,7 @@ app.put("/api/employees/update", uploadFields, async (req, res) => {
    update.companyLogo = req.files.companyLogo[0].filename; 
 }
   try {
-    const user = await EmployeeModel.findOneAndUpdate({ email }, { $set: update }, { new: true });
+    const user = await EmployeeModel.findOneAndUpdate({ email }, { $set: update }, { new: true,strict:false });
     if (!user) return res.status(404).json({ success: false, message: "User not found" });
 
     res.json({ success: true, updatedUser: formatUser(user) });
@@ -496,6 +495,10 @@ function decorateJob(job, employer) {
                (job.companyLogo ? url(job.companyLogo) : null),
   };
 }
+app.use((err, req, res, next) => {
+  console.error('UNHANDLED', err);
+  res.status(500).json({ success: false, message: err.message });
+});
 
 /* ─────────────  start  ───────────── */
 app.listen(PORT, () => console.log(`✅  Server running at http://localhost:${PORT}`));
