@@ -111,6 +111,10 @@ app.post("/login", async (req, res) => {
 
 /* ════════════  PROFILE UPDATE  ════════════ */
 app.put("/api/employees/update", uploadFields, async (req, res) => {
+   console.log("🛠️ UPDATE REQUEST RECEIVED");
+  console.log("BODY:", req.body);
+  console.log("FILES:", Object.keys(req.files || {}), req.files);
+  
   const {
     email, phoneNumber, experience, rating, location,
     position, description, skills, projects,companyName
@@ -139,11 +143,18 @@ app.put("/api/employees/update", uploadFields, async (req, res) => {
   }
 
  if (req.files?.resume?.[0]) {
-   update.resume = req.files.resume[0].filename;          
+   // store only the filename, not the full path
+   update.resume = req.files.resume[0].filename;
  }
+
  if (req.files?.companyLogo?.[0]) {
-   update.companyLogo = req.files.companyLogo[0].filename; 
+   update.companyLogo = req.files.companyLogo[0].filename;
+ }
+
+ if (req.files?.profileImage?.[0]) {
+   update.profileImage = req.files.profileImage[0].filename;
 }
+
   try {
     const user = await EmployeeModel.findOneAndUpdate({ email }, { $set: update }, { new: true,strict:false });
     if (!user) return res.status(404).json({ success: false, message: "User not found" });
