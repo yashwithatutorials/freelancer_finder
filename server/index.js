@@ -17,7 +17,15 @@ const PORT = process.env.PORT || 8080;
 
 /* ─────────────  middleware  ───────────── */
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: ["https://deploy-mern-1whq.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
+
 const toArray = (val) =>
   Array.isArray(val)
     ? val.map((s) => String(s).trim())
