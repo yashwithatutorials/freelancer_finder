@@ -395,7 +395,9 @@ export default function ViewProfile() {
       setResumeFile(null);
       setCompanyLogoFile(null);
       setPreviewLogo(null);
+      window.location.reload();
       notify("Profile updated successfully!", true);
+      
     } catch (err) {
       console.error(err);
       notify(`Update failed: ${err.message}`, false);
@@ -526,3 +528,5 @@ export default function ViewProfile() {
     </div>
   );
 }
+
+

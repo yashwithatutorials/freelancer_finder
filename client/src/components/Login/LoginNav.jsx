@@ -30,9 +30,9 @@ const LoginNav = () => {
     localStorage.removeItem("user");
     window.location.href = '/'; 
      showNotification("Logged out successfully!", true);
-    setTimeout(() => {
+    // setTimeout(() => {
       window.location.href = '/';
-    }, 1000);
+    // }, 1000);
 
   };
   const toggleMenu = () => {
@@ -82,9 +82,9 @@ const LoginNav = () => {
              
             <img 
  src={
-  user?.profileImage
-    ? (user.profileImage.startsWith('http') ? user.profileImage : `https://freelancer-finder.onrender.com/uploads/${user.profileImage}`)
-    : '/default-profile.png'
+  user.companyLogo
+    // ? (user.companyLogo.startsWith('http') ? user.profileImage : `https://freelancer-finder.onrender.com/uploads/${user.companyLogo}`)
+    // : '/default-profile.png'
 }
 
   alt="Profile"

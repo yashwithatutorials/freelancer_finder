@@ -29,10 +29,10 @@ const Login = () => {
             localStorage.setItem("email",userEmail);
   localStorage.setItem("user", JSON.stringify(userData)); 
    showNotification("Login successful!", true);
-                    setTimeout(() => {
+                    // setTimeout(() => {
                         navigate('/Home');
                         window.location.reload();
-                    }, 1000);
+                    // }, 1000);
 }
             else{
                 showNotification("Invalid login credentials", false);
