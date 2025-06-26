@@ -17,15 +17,7 @@ const PORT = process.env.PORT || 8080;
 
 /* ─────────────  middleware  ───────────── */
 app.use(express.json());
-// app.use(cors());
-app.use(
-  cors({
-    origin: ["https://deploy-mern-1whq.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
-
+app.use(cors());
 const toArray = (val) =>
   Array.isArray(val)
     ? val.map((s) => String(s).trim())
@@ -58,16 +50,14 @@ const uploadsPath = path.join(__dirname, "uploads");
 //   })
 //   .then(() => console.log("MongoDB connected"))
 //   .catch((err) => console.error("MongoDB error:", err));
-// mongoose
-//   .connect("mongodb+srv://yashwithareddy1212:Yashu2004@cluster0.hdseipc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-//   })
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB error:", err));
+mongoose
+  .connect("mongodb+srv://yashwithareddy1212:Yashu2004@cluster0.hdseipc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+
+ .then(() => console.log("MongoDB connected"))
+   .catch((err) => console.error("MongoDB error:", err));
 
 /* ════════════  AUTH  ════════════ */
 app.post("/signup", upload.single("profileImage"), async (req, res) => {
