@@ -31,7 +31,7 @@
 }
 
 .profile-details strong {
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 .input {
@@ -115,7 +115,7 @@ img {
 }
 
 .popup-notification.success {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 .popup-notification.error {
@@ -147,11 +147,11 @@ img {
     flex-direction: row;
     align-items: flex-start;
   }
-  
+
   .profile-details {
     flex: 1;
   }
-  
+
   .profile-container img {
     width: 250px;
     height: 250px;
@@ -163,11 +163,11 @@ img {
     width: 180px;
     height: 180px;
   }
-  
+
   .profile-details h3 {
     font-size: 16px;
   }
-  
+
   button {
     width: 100% !important;
     height: 50px !important;
@@ -179,20 +179,22 @@ img {
   .profile-container {
     padding: 10px;
   }
-  
+
   .Profile {
     padding: 10px;
   }
-  
+
   .profile-container img {
     width: 150px;
     height: 150px;
   }
-  
-  .input, .desc, .Select {
+
+  .input,
+  .desc,
+  .Select {
     max-width: 100%;
   }
-  
+
   .profile-details h3 {
     font-size: 15px;
   }
